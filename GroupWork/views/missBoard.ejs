@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/third_party/Umi/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/public/stylesheets/index.css" />
+    <link rel="stylesheet" href="/public/stylesheets/gameBoard.css" />
+  </head>
+  <body>
+  	<header>
+	   <nav class="navbar navbar-default navbar-fixed-top bg-primary">
+	     <div class="container">
+	       <div class="navbar-header">
+	         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	           <span class="sr-only">Toggle navigation</span>
+	           <span class="icon-bar"></span>
+	           <span class="icon-bar"></span>
+	           <span class="icon-bar"></span>
+	         </button>
+	         <a class="navbar-brand" href="#">Project name</a>
+	       </div>
+	       <div id="navbar" class="collapse navbar-collapse">
+	         <ul class="nav navbar-nav">
+	           <li class="active"><a href="#">Home</a></li>
+	           <li><a href="#about">About</a></li>
+	           <li><a href="#contact">Contact</a></li>
+	         </ul>
+	       </div>
+	     </div>
+	   </nav>
+	</header>
+
+    <div class="container">
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <p><%= message %></p>
+      </div>
+
+	<div class="form-group">
+	<form name="start" action="/game" method="POST">
+		<input type="hidden" name="image" id="image"/>
+		<input type="hidden" name="checkFlg" id="checkFlg"/>
+		<button type="submit" onclick="rtnLoc()">new game</button>
+	</form>
+	</div>
+
+      <div class="img-table">
+		<table cellpadding="0" cellspacing="0"><tbody>
+			<tr>
+				<td>
+					<img id="1_1" onclick="changeImg('1_1')" src="/public/images/<%= img[0] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="1_2" onclick="changeImg('1_2')" src="/public/images/<%= img[1] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="1_3" onclick="changeImg('1_3')" src="/public/images/<%= img[2] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="1_4" onclick="changeImg('1_4')" src="/public/images/<%= img[3] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="1_5" onclick="changeImg('1_5')" src="/public/images/<%= img[4] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="1_6" onclick="changeImg('1_6')" src="/public/images/<%= img[5] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="2_1" onclick="changeImg('2_1')" src="/public/images/<%= img[6] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="2_2" onclick="changeImg('2_2')" src="/public/images/<%= img[7] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="2_3" onclick="changeImg('2_3')" src="/public/images/<%= img[8] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="2_4" onclick="changeImg('2_4')" src="/public/images/<%= img[9] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="2_5" onclick="changeImg('2_5')" src="/public/images/<%= img[10] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="2_6" onclick="changeImg('2_6')" src="/public/images/<%= img[11] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="3_1" onclick="changeImg('3_1')" src="/public/images/<%= img[12] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="3_2" onclick="changeImg('3_2')" src="/public/images/<%= img[13] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="3_3" onclick="changeImg('3_3')" src="/public/images/<%= img[14] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="3_4" onclick="changeImg('3_4')" src="/public/images/<%= img[15] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="3_5" onclick="changeImg('3_5')" src="/public/images/<%= img[16] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="3_6" onclick="changeImg('3_6')" src="/public/images/<%= img[17] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="4_1" onclick="changeImg('4_1')" src="/public/images/<%= img[18] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="4_2" onclick="changeImg('4_2')" src="/public/images/<%= img[19] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="4_3" onclick="changeImg('4_3')" src="/public/images/<%= img[20] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="4_4" onclick="changeImg('4_4')" src="/public/images/<%= img[21] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="4_5" onclick="changeImg('4_5')" src="/public/images/<%= img[22] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="4_6" onclick="changeImg('4_6')" src="/public/images/<%= img[23] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="5_1" onclick="changeImg('5_1')" src="/public/images/<%= img[24] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="5_2" onclick="changeImg('5_2')" src="/public/images/<%= img[25] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="5_3" onclick="changeImg('5_3')" src="/public/images/<%= img[26] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="5_4" onclick="changeImg('5_4')" src="/public/images/<%= img[27] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="5_5" onclick="changeImg('5_5')" src="/public/images/<%= img[28] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="5_6" onclick="changeImg('5_6')" src="/public/images/<%= img[29] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="6_1" onclick="changeImg('6_1')" src="/public/images/<%= img[30] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="6_2" onclick="changeImg('6_2')" src="/public/images/<%= img[31] %>" class="img-thumbnail" class="img-responsive"/>
+				</td>
+				<td>
+					<img id="6_3" onclick="changeImg('6_3')" src="/public/images/<%= img[32] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="6_4" onclick="changeImg('6_4')" src="/public/images/<%= img[33] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="6_5" onclick="changeImg('6_5')" src="/public/images/<%= img[34] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+				<td>
+					<img id="6_6" onclick="changeImg('6_6')" src="/public/images/<%= img[35] %>" class="img-thumbnail" class="img-responsive" />
+				</td>
+			</tr>
+
+
+		</tbody></table>
+		</div>
+    </div>
+
+
+    <script type="text/javascript" src="/public/third_party/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/public/third_party/Umi/dist/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="/public/javascripts/index.js"></script>
+  </body>
+</html>

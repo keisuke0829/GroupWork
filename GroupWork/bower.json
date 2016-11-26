@@ -1,0 +1,23 @@
+{
+  "name": "gaister",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "keisuke"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2",
+  },
+  "devDependencies": {
+    "Umi": "3.3.7-2"
+  }
+}
