@@ -1,0 +1,4 @@
+window.onload = function(){
+	var navibar = document.getElementsById('nvHome');
+	navibar.className = "active";
+};

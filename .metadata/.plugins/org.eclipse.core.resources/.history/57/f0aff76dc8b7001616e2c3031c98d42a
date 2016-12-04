@@ -1,0 +1,19 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.color-blue {
+	color:blue;
+}
+.color-skyblue {
+	color:skyblue;
+}
+
+.footer {
+	text-align: center;
+	padding: 10px;
+	background: #2c3e50;
+}

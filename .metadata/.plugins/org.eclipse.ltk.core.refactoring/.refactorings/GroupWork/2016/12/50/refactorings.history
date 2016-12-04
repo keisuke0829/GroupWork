@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="リソース名 &apos;GroupWork/config/test.json&apos; を &apos;default.json&apos; に変更します" description="リソース &apos;test.json&apos; の名前変更" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="config/test.json" name="default.json" stamp="1480821535257" updateReferences="true"/>
+</session>

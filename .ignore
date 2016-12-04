@@ -1,0 +1,7 @@
+#環境設定ファイルは対象外
+/GroupWork/config/*.json
+
+#eclipseの設定ファイルは対象外
+/.metadata
+/RemoteSystemsTempFiles
+/GroupWork/.settings

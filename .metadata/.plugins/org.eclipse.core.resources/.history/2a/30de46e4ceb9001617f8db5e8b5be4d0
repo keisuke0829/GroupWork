@@ -1,0 +1,12 @@
+{
+    "db":{
+        "host":"",
+        "user":"",
+        "password":"",
+        "db":""
+    }
+
+	"env":{
+		"domain":""
+	}
+}

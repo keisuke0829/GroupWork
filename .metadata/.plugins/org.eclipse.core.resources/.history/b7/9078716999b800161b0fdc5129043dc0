@@ -1,0 +1,15 @@
+var connection = require('./mod_mysqlConn');
+
+var OpStatus = function(status) {
+	this.status = status;
+
+	this.getStatus = function() {
+		var sql = 'SELECT * FROM T000MCL WHERE PAGE_ID = ?';
+		connection.query(sql ,[status] , function(err, rows, fields) {
+			console.log(rows[0].OP_STATUS);
+			return rows[0].OP_STATUS;
+		});
+	}
+}
+
+module.exports = OpStatus;

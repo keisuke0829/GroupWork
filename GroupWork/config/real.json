@@ -1,0 +1,14 @@
+{
+    "db":{
+        "host":"localhost",
+        "sys_user":"dbs00",
+        "pub_user":"pub01",
+        "sys_pswd":"dbsys00",
+        "pub_pswd":"pubuser01",
+        "db":"db01real"
+    }
+
+	"env":{
+		"domain":"groupwork.tech"
+	}
+}

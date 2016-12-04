@@ -1,0 +1,52 @@
+var Sequelize = require('sequelize');
+
+var Seq = new Sequelize('t01test', 'dbs00', 'dbsys00', {host : 'localhost',	port : 3306});
+
+var t000mcl = Seq.define('t000cml', {
+	page_id : Sequelize.STRING,
+	page_group : Sequelize.STRING,
+	op_status : Sequelize.STRING,
+	cl_time_from : Sequelize.DATE,
+	cl_time_to : Sequelize.DATE,
+	ins_date : Sequelize.DATE,
+	ins_id : Sequelize.STRING,
+	upd_date : Sequelize.DATE,
+	upd_id : Sequelize.STRING
+});
+
+User.getPageState({
+	where : {
+		page_id : '',
+		page_group : ''
+	}
+}).error(function(err) {
+	//エラー時の処理
+}).success(function(result) {
+	//成功時の処理
+});
+
+User.pageOpen({
+	op_status : '1'
+},//更新内容
+{
+	page_id : '',
+	page_group : ''
+}//対象
+).error(function(err) {
+	//エラー時の処理
+}).success(function(result) {
+	//成功時の処理
+});
+
+User.pageClose({
+	op_status : '0'
+},//更新内容
+{
+	page_id : '',
+	page_group : ''
+}//対象
+).error(function(err) {
+	//エラー時の処理
+}).success(function(result) {
+	//成功時の処理
+});

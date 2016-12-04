@@ -1,0 +1,12 @@
+var mysql = require('mysql');
+
+var dbDef = {
+  host: 'localhost',
+  user: 'dbs00',
+  password: 'dbsys00',
+  database: 'db01test'
+};
+
+var connection = mysql.createConnection(dbDef);
+
+module.exports = connection;

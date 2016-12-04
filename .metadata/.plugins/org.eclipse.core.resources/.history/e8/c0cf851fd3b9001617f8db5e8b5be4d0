@@ -1,0 +1,10 @@
+<% layout('layout') -%>
+
+<div class="container">
+	<div class="title">
+		<h1><%= message %></h1>
+	</div>
+
+<% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/index.css' />") -%>
+<% block("footer_script1","") -%>
+<% block("footer_script2","") -%>

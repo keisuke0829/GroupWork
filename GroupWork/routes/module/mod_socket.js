@@ -11,7 +11,6 @@ server.listen(8888);//8888番ポートで起動
 //接続確立時の処理
 io.sockets.on('connection', function (socket) {
   // この中でデータのやり取りを行う
-	console.log('conn',socket.id);
 
 	//socket.broadcast.emit('receiveMsg',JSON.stringify(socket.id + 'さんが入室しました！','system'));
 	var fMsg = socket.id + 'さんが入室しました！';

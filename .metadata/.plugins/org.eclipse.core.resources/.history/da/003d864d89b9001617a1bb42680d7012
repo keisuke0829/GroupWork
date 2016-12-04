@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= title %></title>
+<link rel="stylesheet"
+	href="/public/third_party/Umi/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/public/stylesheets/layout.css" />
+<%- blocks.header_scripts %>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top bg-primary">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">groupwork.tech</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<%- body %>
+
+	<footer class="footer">
+		<div class="container">
+			<p class="text-primary">Copyright (C) 2016 groupwork.tech All
+				Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<%- blocks.footer_script1 %>
+	<script type="text/javascript"
+		src="/public/third_party/jquery/dist/jquery.js"></script>
+	<script type="text/javascript"
+		src="/public/third_party/Umi/dist/js/bootstrap.min.js"></script>
+	<%- blocks.footer_script2 %>
+</body>
+</html>
