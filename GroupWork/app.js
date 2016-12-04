@@ -22,6 +22,7 @@ app.use('/public', express.static('public'));
 //app.use('/chatRoom', require('./routes/chatRoom.js'));
 app.get('/', require('./routes/index.js'));
 app.get('/chatRoom', require('./routes/chatRoom.js'));
+app.get('/maintenance', require('./routes/maintenance.js'));
 
 // サーバーをポート 3000 で起動
 app.listen(3000);

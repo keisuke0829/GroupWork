@@ -1,6 +1,7 @@
-var socket, emit, id;
+var socket, emit, id, host;
 (function(){
-    socket = io.connect("http://localhost:8888");
+    host = window.location.hostname
+    socket = io.connect("http://" + host);
     emit = function (name, data){
         // json → 文字列に変換して送信する関数
         socket.emit(name, JSON.stringify(data));
