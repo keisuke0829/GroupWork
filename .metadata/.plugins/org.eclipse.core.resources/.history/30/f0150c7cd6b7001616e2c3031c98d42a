@@ -1,7 +1,0 @@
-
-		<script type="text/javascript" src="http://localhost:8888/socket.io/socket.io.js"></script>
-		<script type="text/javascript" src="/public/third_party/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src="/public/third_party/Umi/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/public/javascripts/index.js"></script>
-	</body>
-</html>
