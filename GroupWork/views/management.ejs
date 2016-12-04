@@ -4,6 +4,23 @@
 	<div class="title">
 		<h1><%= message %></h1>
 	</div>
+
+	<form action="">
+		<div class="form-group">
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-info">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">リスト1</label>
+					</div>
+				</li>
+				<li class="list-group-item list-group-item-danger">リスト2</li>
+				<li class="list-group-item">SELECT * FROM T000MCL ORDER BY PAGE_ID ASC</li>
+				<li class="list-group-item">リスト4</li>
+				<li class="list-group-item">リスト5</li>
+			</ul>
+		</div>
+		<button class="btn btn-primary">変更</button>
+	</form>
 </div>
 
 <% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/management.css' />") -%>
