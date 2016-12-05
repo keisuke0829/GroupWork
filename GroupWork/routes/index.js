@@ -15,10 +15,10 @@ router.get('/', function (request, response) {
 		} else {
 			response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
 		}
-	//delete opStatus;
 	};
 
 	OpStatus.get_status(callback);
+
 
 });
 

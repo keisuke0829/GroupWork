@@ -8,15 +8,21 @@
 	<form action="">
 		<div class="form-group">
 			<ul class="list-group">
-				<li class="list-group-item list-group-item-info">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">リスト1</label>
-					</div>
-				</li>
-				<li class="list-group-item list-group-item-danger">リスト2</li>
-				<li class="list-group-item">SELECT * FROM T000MCL ORDER BY PAGE_ID ASC</li>
-				<li class="list-group-item">リスト4</li>
-				<li class="list-group-item">リスト5</li>
+				<% pageList.forEach(function(pageItem) { %>
+					<% if (pageItem.OP_STATUS === '1') { %>
+						<li class="list-group-item list-group-item-info">
+							<div class="checkbox">
+								<label><input type="checkbox" id="<%= pageItem.PAGE_ID %>"><%= pageItem.PAGE_ID %></label>
+							</div>
+						</li>
+					<% } else { %>
+						<li class="list-group-item list-group-item-danger">
+							<div class="checkbox">
+								<label><input type="checkbox" id="<%= pageItem.PAGE_ID %>"><%= pageItem.PAGE_ID %></label>
+							</div>
+						</li>
+					<% } %>
+				<% }); %>
 			</ul>
 		</div>
 		<button class="btn btn-primary">変更</button>
