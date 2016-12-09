@@ -5,29 +5,41 @@
 		<h1><%= message %></h1>
 	</div>
 
-	<form action="">
-		<div class="form-group">
-			<ul class="list-group">
-				<% pageList.forEach(function(pageItem) { %>
-					<% if (pageItem.OP_STATUS === '1') { %>
-						<li class="list-group-item list-group-item-info">
-							<div class="checkbox">
-								<label><input type="checkbox" id="<%= pageItem.PAGE_ID %>"><%= pageItem.PAGE_ID %></label>
-							</div>
-						</li>
-					<% } else { %>
-						<li class="list-group-item list-group-item-danger">
-							<div class="checkbox">
-								<label><input type="checkbox" id="<%= pageItem.PAGE_ID %>"><%= pageItem.PAGE_ID %></label>
-							</div>
-						</li>
-					<% } %>
-				<% }); %>
-			</ul>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+		<h1 class="sub-header">ページ制御</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ページID</th>
+						<th>ステータス</th>
+						<th>ページ名</th>
+						<th>Change</th>
+					</tr>
+				</thead>
+				<form action="/management" method="post">
+					<tbody>
+					<% pageList.forEach(function(pageItem) { %> <% if (pageItem.OP_STATUS === '1') { %>
+						<tr>
+							<td><%= pageItem.PAGE_ID %></td>
+							<td>オープン</td>
+							<td>ページ名</td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>">変更</button></td>
+						</tr>
+						<% } else { %>
+						<tr>
+							<td><%= pageItem.PAGE_ID %></td>
+							<td>クローズ</td>
+							<td>ページ名</td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>">変更</button></td>
+						</tr>
+						<% } %> <% }); %>
+					</tbody>
+				</form>
+			</table>
 		</div>
-		<button class="btn btn-primary">変更</button>
-	</form>
-</div>
+	</div>
 
 <% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/management.css' />") -%>
 <% block("footer_script1","") -%>
