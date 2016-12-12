@@ -25,14 +25,14 @@
 							<td><%= pageItem.PAGE_ID %></td>
 							<td>オープン</td>
 							<td>ページ名</td>
-							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>">変更</button></td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>_1">変更</button></td>
 						</tr>
 						<% } else { %>
 						<tr>
 							<td><%= pageItem.PAGE_ID %></td>
 							<td>クローズ</td>
 							<td>ページ名</td>
-							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>">変更</button></td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>_0">変更</button></td>
 						</tr>
 						<% } %> <% }); %>
 					</tbody>
