@@ -21,7 +21,7 @@ router.get('/management', function (request, response, next) {
 });
 
 router.get('/management', function (request, response, next) {
-	var sql = 'SELECT PAGE_ID, PAGE_GROUP, OP_STATUS FROM T000MCL ORDER BY PAGE_ID ASC';
+	var sql = 'SELECT PAGE_ID, PAGE_GROUP, PAGE_NAME, OP_STATUS FROM T000MCL ORDER BY PAGE_ID ASC';
 	conn.query(sql, function(err, rows) {
 		response.render('management', { title: '管理ページ', message: 'メンテナンス画面へようこそ！', pageList: rows});
 	});
@@ -58,7 +58,7 @@ router.post('/management', function (request, response, next) {
 });
 
 router.post('/management', function (request, response, next) {
-	var sql = 'SELECT PAGE_ID, PAGE_GROUP, OP_STATUS FROM T000MCL ORDER BY PAGE_ID ASC';
+	var sql = 'SELECT PAGE_ID, PAGE_GROUP, PAGE_NAME, OP_STATUS FROM T000MCL ORDER BY PAGE_ID ASC';
 	conn.query(sql, function(err, rows) {
 		response.render('management', { title: '管理ページ', message: 'メンテナンス画面へようこそ！', pageList: rows});
 	});
