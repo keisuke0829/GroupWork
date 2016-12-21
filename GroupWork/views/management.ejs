@@ -1,0 +1,46 @@
+<% layout('layout') -%>
+
+<div class="container">
+	<div class="title">
+		<h1><%= message %></h1>
+	</div>
+
+	<div class="main">
+
+		<h1 class="sub-header">ページ制御</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ページID</th>
+						<th>ステータス</th>
+						<th>ページ名</th>
+						<th>Change</th>
+					</tr>
+				</thead>
+				<form action="/management" method="post">
+					<tbody>
+					<% pageList.forEach(function(pageItem) { %> <% if (pageItem.OP_STATUS === '1') { %>
+						<tr>
+							<td><%= pageItem.PAGE_ID %></td>
+							<td><font color="Green">オープン</font></td>
+							<td><%= pageItem.PAGE_NAME %></td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>_1">変更</button></td>
+						</tr>
+						<% } else { %>
+						<tr>
+							<td><%= pageItem.PAGE_ID %></td>
+							<td><font color="Red">クローズ</font></td>
+							<td><%= pageItem.PAGE_NAME %></td>
+							<td><button class="btn btn-primary active" type="submit" formmethod="post" name="page_id" value="<%= pageItem.PAGE_ID %>_0">変更</button></td>
+						</tr>
+						<% } %> <% }); %>
+					</tbody>
+				</form>
+			</table>
+		</div>
+	</div>
+</div>
+<% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/management.css' />") -%>
+<% block("footer_script1","") -%>
+<% block("footer_script2","<script type='text/javascript' src='/public/javascripts/management.js'></script>") -%>
