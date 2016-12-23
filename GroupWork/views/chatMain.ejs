@@ -1,0 +1,45 @@
+<% layout('layout') -%>
+
+<div class="container">
+	<div class="title">
+		<h1><%= message %></h1>
+	</div>
+	<div class="roomList">
+		<table class="table">
+			<thead class="thead-inverse">
+				<tr>
+					<th>RoomNo</th>
+					<th>ルーム名</th>
+					<th>作成日時</th>
+					<th>シークレット</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+			</tbody>
+			<div class="form-group">
+				<form action="/chatMain" method="post">
+					<tbody>
+						<tr>
+							<th scope="row"><button type="submit" class="btn btn-primary">作成</button></th>
+							<td><input type="text" class="form-control" id="roomName"
+								placeholder="ルーム名"></td>
+							<td>現在日時</td>
+							<td><input type="password" class="form-control" id="password"
+								placeholder="必要ならパスワード入力"></td>
+						</tr>
+					</tbody>
+				</form>
+			</div>
+		</table>
+	</div>
+</div>
+
+<% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/chatMain.css' />") -%>
+<% block("footer_script1","") -%>
+<% block("footer_script2","<script type='text/javascript' src='/public/javascripts/chatMain.js'></script>") -%>

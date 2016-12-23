@@ -6,16 +6,15 @@ var OpStatus = require('./module/OpStatus');
 // デフォルトルーティング
 
 router.get('/', function (request, response) {
-	// SELECT * FROM 't000mcl WHERE PAGE_ID = 'P0006';
-	OpStatus.set_status('P0006');
+	//
+	OpStatus.set_status('P0005');
 
 	var callback = function(stt) {
 		if (stt == '1') {
-			response.render('chatRoom', { title: 'Chat Room', message: 'チャットルームへようこそ！' });
+			response.render('chatMain', { title: 'チャットルーム選択', message: 'チャット画面へようこそ！' });
 		} else {
 			response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
 		}
-	//delete opStatus;
 	};
 
 	OpStatus.get_status(callback);

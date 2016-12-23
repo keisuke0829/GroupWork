@@ -31,7 +31,7 @@ window.onload = function(){
         document.getElementById('msg').value = '';
     });
 
-    socket.on('init', function(d){
+    socket.on('info', function(d){
     	var data = JSON.parse(d), // 文字列→JSON
     		panel = document.createElement('div'), // liタグ作成
     		span = document.createElement('span'), //spanタグ作成
