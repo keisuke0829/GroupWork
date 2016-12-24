@@ -15,27 +15,29 @@
 				</tr>
 			</thead>
 			<tbody>
+				<% roomList.forEach(function(roomItem) { %> <% if (roomItem.DEL_FLG === '0') { %>
 				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<th scope="row"><%= roomItem.ROOM_ID %></th>
+					<td><a href="./chatRoom"><%= roomItem.ROOM_NAME %></a></td>
+					<td><%= roomItem.INS_DATE %></td>
+					<td></td>
 				</tr>
+				<% } %> <% }); %>
 			</tbody>
-			<div class="form-group">
+			<tbody>
 				<form action="/chatMain" method="post">
-					<tbody>
-						<tr>
-							<th scope="row"><button type="submit" class="btn btn-primary">作成</button></th>
-							<td><input type="text" class="form-control" id="roomName"
-								placeholder="ルーム名"></td>
-							<td>現在日時</td>
-							<td><input type="password" class="form-control" id="password"
-								placeholder="必要ならパスワード入力"></td>
-						</tr>
-					</tbody>
+					<tr>
+						<th scope="row"><button type="submit" class="btn btn-primary" formmethod="post">作成</button></th>
+						<div class="form-group">
+							<td><input type="text" class="form-control" name="roomName" placeholder="ルーム名"></td>
+						</div>
+						<td>現在日時</td>
+						<div class="form-group">
+							<td><input type="password" class="form-control" name="password" placeholder="必要ならパスワード入力"></td>
+						</div>
+					</tr>
 				</form>
-			</div>
+			</tbody>
 		</table>
 	</div>
 </div>

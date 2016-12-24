@@ -38,4 +38,4 @@ app.post('/management', require('./routes/management.js'));
 app.listen(3000);
 
 // アプリケーション開始ログ
-console.log('Server running at http://localhost:3000');
+console.log('Server running at https://localhost:3000');
