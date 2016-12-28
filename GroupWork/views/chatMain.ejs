@@ -4,8 +4,8 @@
 	<div class="title">
 		<h1><%= message %></h1>
 	</div>
-	<div class="roomList">
-		<table class="table">
+	<div class="table-responsive">
+		<table class="table table-striped">
 			<thead class="thead-inverse">
 				<tr>
 					<th>RoomNo</th>
@@ -15,14 +15,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% roomList.forEach(function(roomItem) { %> <% if (roomItem.DEL_FLG === '0') { %>
-				<tr>
-					<th scope="row"><%= roomItem.ROOM_ID %></th>
-					<td><a href="./chatRoom"><%= roomItem.ROOM_NAME %></a></td>
-					<td><%= roomItem.INS_DATE %></td>
-					<td></td>
-				</tr>
-				<% } %> <% }); %>
+				<form action="/chatRoom" method="post">
+					<% roomList.forEach(function(roomItem) { %> <% if (roomItem.DEL_FLG === '0') { %>
+					<tr>
+						<th scope="row"><button class="btn btn-primary active" name="enter" type="submit" value="<%= roomItem.ROOM_ID %>">入室_<%= roomItem.ROOM_ID %></button></th>
+						<td><%= roomItem.ROOM_NAME %></td>
+						<td><%= roomItem.INS_DATE %></td>
+						<td><input type="password" class="form-control" name="enterPass" placeholder="パスワード"></td>
+					</tr>
+					<% } %> <% }); %>
+				</form>
 			</tbody>
 			<tbody>
 				<form action="/chatMain" method="post">
