@@ -1,7 +1,7 @@
 var socket, emit, id, host;
 (function(){
     host = window.location.hostname
-    socket = io.connect("http://" + host);
+    socket = io.connect("https://" + host);
     emit = function (name, data){
         // json → 文字列に変換して送信する関数
         socket.emit(name, JSON.stringify(data));
@@ -31,7 +31,7 @@ window.onload = function(){
         document.getElementById('msg').value = '';
     });
 
-    socket.on('init', function(d){
+    socket.on('info', function(d){
     	var data = JSON.parse(d), // 文字列→JSON
     		panel = document.createElement('div'), // liタグ作成
     		span = document.createElement('span'), //spanタグ作成

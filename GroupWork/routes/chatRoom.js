@@ -5,13 +5,13 @@ var OpStatus = require('./module/OpStatus');
 
 // デフォルトルーティング
 
-router.get('/chatRoom', function (request, response) {
+router.post('/', function (request, response) {
 	// SELECT * FROM 't000mcl WHERE PAGE_ID = 'P0006';
 	OpStatus.set_status('P0006');
 
 	var callback = function(stt) {
 		if (stt == '1') {
-			response.render('chatRoom', { title: 'Chat Room', message: 'チャットルームへようこそ！' });
+			response.render('chatRoom', { title: 'Chat Room', message: request.body.enter });
 		} else {
 			response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
 		}
