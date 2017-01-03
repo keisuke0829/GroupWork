@@ -27,12 +27,6 @@ app.use('/', index);
 app.use('/chatMain', chatMain);
 app.use('/chatRoom', chatRoom);
 app.use('/management', management);
-/*
-app.get('/', require('./routes/index.js'));
-app.get('/chatRoom', require('./routes/chatRoom.js'));
-app.get('/management', require('./routes/management.js'));
-app.post('/management', require('./routes/management.js'));
-*/
 
 // サーバーをポート 3000 で起動
 app.listen(3000);
