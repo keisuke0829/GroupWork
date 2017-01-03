@@ -6,6 +6,7 @@ var index = require('./routes/index');
 var management = require('./routes/management');
 var chatMain = require('./routes/chatMain');
 var chatRoom = require('./routes/chatRoom');
+var register = require('./routes/register');
 
 // express の実態 Application を生成
 var app = express();
@@ -27,6 +28,7 @@ app.use('/', index);
 app.use('/chatMain', chatMain);
 app.use('/chatRoom', chatRoom);
 app.use('/management', management);
+app.use('/register', register);
 
 // サーバーをポート 3000 で起動
 app.listen(3000);
