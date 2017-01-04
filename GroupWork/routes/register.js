@@ -19,13 +19,24 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-	var userName = req.body.user_name;
+	var userName = req.body.userName;
 	var email = req.body.email;
 	var password = req.body.password;
-	var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
-	var query = 'INSERT INTO users (user_name, email, password, created_at) VALUES ("' + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + '"' + createdAt + '")';
-	connection.query(query, function(err, rows) {
-		res.redirect('/login');
+	var memberExistsQuery = 'SELECT * T101USR WHERE USER_NAME = "' + userName + '" AND PASSWORD = "' + password + '"';
+
+	var registerQuery = 'INSERT INTO T101USR (USER_ID, email, password, created_at) VALUES ("' + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + '"' + createdAt + '")'; // 変更
+	conn.query(memberExistsQuery, function(err, email) {
+		var memberExists = email.length === 1;
+		if (memberExists) {
+			res.render('register', {
+				title: '新規会員登録',
+				memberExists: '既に登録されているメンバーです'
+			});
+		} else {
+			conn.query(registerQuery, function(err, rows) {
+				res.redirect('/login');
+			});
+		}
 	});
 });
 
