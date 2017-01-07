@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="53" key="DIALOG_X_ORIGIN"/>
+		<item value="-262" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="EditorSelectionDialog">
+		<item value="false" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item value="549" key="dialogHeight"/>
+		<item value="960" key="dialogWidth"/>
+		<list key="textEntries">
+		</list>
+		<list key="orderedElements">
+		</list>
+		<list key="orderedProviders">
+		</list>
+		<list key="textArray">
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="FileExtensionDialogSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI" key="DIALOG_FONT_NAME"/>
+		<item value="281" key="DIALOG_HEIGHT"/>
+		<item value="126" key="DIALOG_X_ORIGIN"/>
+		<item value="193" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

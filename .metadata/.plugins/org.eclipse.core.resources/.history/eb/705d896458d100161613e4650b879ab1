@@ -1,0 +1,42 @@
+var io = require('socket.io').listen(app);
+
+chat = io.sockets.on('connection', function(client) {
+    // ※2 クライアントに接続成功を送信
+    client.emit('connected');
+
+    client.on('init', function(req) {
+        client.set('room', req.room);
+        client.set('name', req.name);
+        chat.to(req.room).emit('message', req.name + " さんが入室");
+        // ※4 クライアントを部屋に入室させる
+        client.join(req.room);
+    });
+
+    client.on('message', function(data) {
+        var room, name;
+
+        client.get('room', function(err, _room) {
+            room = _room;
+        });
+        client.get('name', function(err, _name) {
+            name = _name;
+        });
+
+        // ※6 受け取ったメッセージを部屋の皆に送信
+        chat.to(room).emit('message', name + ": " + data);
+    });
+
+    // ※8 退室
+    client.on('disconnect', function() {
+        var room, name;
+
+        client.get('room', function(err, _room) {
+            room = _room;
+        });
+        client.get('name', function(err, _name) {
+            name = _name;
+        });
+        client.leave(room);
+        chat.to(room).emit('message', name + " さんが退出");
+    });
+});

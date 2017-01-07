@@ -1,0 +1,7 @@
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>\u767B\u9332\u753B\u9762\u3061\u3087\u3063\u3068\u8FFD\u52A0</message>\r\n<message>\u30E1\u30F3\u30D0\u30FC\u767B\u9332\u753B\u9762\u306E\u30AC\u30EF\u3092\u8FFD\u52A0</message>\r\n<message>\u3061\u3087\u3063\u3068\u5909\u66F4</message>\r\n<message>\u7BA1\u7406\u30DA\u30FC\u30B8\u306F\u5927\u65B9\u5B8C\u4E86</message>\r\n<message>\u7BA1\u7406\u30DA\u30FC\u30B8\u30EC\u30D9\u30EB\u30A2\u30C3\u30D7\uFF08\u30AA\u30FC\u30D7\u30F3\u30FB\u30AF\u30ED\u30FC\u30BA\u53EF\u80FD\uFF09</message>\r\n<message>\u30DA\u30FC\u30B8\u306E\u5236\u5FA1\u6A5F\u80FD\u3092\u8FFD\u52A0\uFF08\u30AA\u30FC\u30D7\u30F3\u3057\u304B\u3067\u304D\u306A\u3044\uFF09</message>\r\n<message>\u7BA1\u7406\u753B\u9762\u30EC\u30D9\u30EB\u30A2\u30C3\u30D7</message>\r\n<message>\u7BA1\u7406\u753B\u9762\u306E\u898B\u305F\u76EE\u4FEE\u6B63</message>\r\n<message>\u7BA1\u7406\u753B\u9762\u30AC\u30EF\u306E\u8FFD\u52A0</message>\r\n<message>\u3061\u3087\u3063\u3068\u5171\u901A\u5316</message>\r\n</messages>
+eclipse.preferences.version=1
+resourcehistory_graph_split=500,500
+resourcehistory_rev_split=700,300
+show_git_prefix_warning=false
+show_home_drive_warning=false
+show_initial_config_dialog=false

@@ -1,0 +1,18 @@
+var express = require('express');
+var router = express.Router();
+var OpStatus = require('./module/OpStatus');
+var conn = require('./module/mod_mysqlConn');
+
+router.get('/', function(req, res, next) {
+	OpStatus.set_status('P0009');
+
+	var callback = function(stt) {
+		if (stt == '1') {
+			next();
+		} else {
+			response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
+		}
+	};
+
+	OpStatus.get_status(callback);
+});
