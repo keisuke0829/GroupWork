@@ -1,2 +1,6 @@
 #環境設定ファイルは対象外
 /GroupWork/config/*.json
+
+/RemoteSystemsTempFiles
+/.metadata
+/GroupWork/.project

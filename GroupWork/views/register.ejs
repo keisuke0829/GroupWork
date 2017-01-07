@@ -4,8 +4,32 @@
 	<div class="title">
 		<h1><%= message %></h1>
 	</div>
+
+	<form method="post" data-toggle="validator" role="form">
+		<div class="form-group has-feedback">
+			<label for="name"  class="control-label">
+				<span class="label label-danger">必須項目</span>　名前
+			</label>
+			<input type="text" class="form-control" id="name" name="name" placeholder="Enter name" data-required-error="名前の入力は必須です" required>
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+			<div class="help-block with-errors"></div>
+		</div>
+		<div class="form-group">
+			<label for="email"  class="control-label">Email address</label>
+			<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+			<small id="emailHelp" class="form-text text-muted">任意入力です</small>
+		</div>
+		<div class="form-group">
+			<label for="password"  class="control-label">Password</label>
+			<input type="password" class="form-control" id="password" name="password" aria-describedby="pswdHelp" placeholder="Password">
+			<small id="pswdHelp" class="form-text text-muted">半角英数6～20文字</small>
+			<input type="password" class="form-control" id="rePassword" aria-describedby="rpswdHelp" placeholder="確認用Password">
+			<small id="rpswdHelp" class="form-text text-muted">パスワードを再入力</small>
+		</div>
+		<button type="submit" class="btn btn-primary">登録</button>
+	</form>
 </div>
 
 <% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/register.css' />") -%>
 <% block("footer_script1","") -%>
-<% block("footer_script2","<script type='text/javascript' src='/public/javascripts/register.js'></script>") -%>
+<% block("footer_script2","<script type='text/javascript' src='/public/javascripts/register.js'></script><script type='text/javascript' src='/public/third_party/bootstrap_validator/dist/validator.js'></script>") -%>
