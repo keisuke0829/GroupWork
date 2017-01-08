@@ -19,22 +19,27 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-	var userName = req.body.userName;
+	var userName = req.body.name;
 	var email = req.body.email;
 	var password = req.body.password;
-	var memberExistsQuery = 'SELECT * T101USR WHERE USER_NAME = "' + userName + '" AND PASSWORD = "' + password + '"';
+	var memberExistsQuery = 'SELECT * FROM T101USR WHERE USER_NAME = "' + userName + '" AND PASSWORD = "' + password + '" LIMIT 1';
+	var userIdQuery = 'SELECT SEQ FROM T901SEQ WHERE TBL_ID = "T101USR"';
 
-	var registerQuery = 'INSERT INTO T101USR (USER_ID, email, password, created_at) VALUES ("' + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + '"' + createdAt + '")'; // 変更
-	conn.query(memberExistsQuery, function(err, email) {
-		var memberExists = email.length === 1;
+	conn.query(memberExistsQuery, function(err, user) {
+		var memberExists = user.length === 1;
 		if (memberExists) {
 			res.render('register', {
-				title: '新規会員登録',
-				memberExists: '既に登録されているメンバーです'
+				title: 'メンバー登録',
+				message: '既に登録されているメンバーです'
 			});
 		} else {
-			conn.query(registerQuery, function(err, rows) {
-				res.redirect('/login');
+			conn.query(userIdQuery, function(err, seq) {
+				// USE_IDのシーケンスはDBのトリガーで進める
+				var userId = seq[0].SEQ;
+				var registerQuery = 'INSERT INTO T101USR (USER_ID, USER_NAME, MAIL_ADDRESS, PASSWORD, INS_DATE, INS_ID) VALUES("' + userId + '", ' + '"' + userName + '", ' + '"' + email + '", ' + '"' + password + '", ' + 'NOW(), "dbs00")';
+				conn.query(registerQuery, function(err, rows) {
+					res.render('index', { title: 'groupwork.tech', message: 'メンバー登録完了！' });
+				});
 			});
 		}
 	});
