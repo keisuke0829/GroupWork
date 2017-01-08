@@ -30,7 +30,8 @@ router.post('/', function(req, res, next) {
 		if (memberExists) {
 			res.render('register', {
 				title: 'メンバー登録',
-				message: '既に登録されているメンバーです'
+				message: 'メンバー登録画面です',
+				memberExists: '既に登録されているメンバーです'
 			});
 		} else {
 			conn.query(userIdQuery, function(err, seq) {

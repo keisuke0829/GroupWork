@@ -36,6 +36,9 @@
 		</div>
 		<button type="submit" class="btn btn-primary">登録</button>
 	</form>
+	<% if (typeof memberExists !== 'undefined') { %>
+		<p class="error"><%= memberExists %></p>
+	<% } %>
 </div>
 
 <% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/register.css' />") -%>
