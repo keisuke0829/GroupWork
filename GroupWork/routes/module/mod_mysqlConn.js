@@ -2,10 +2,10 @@ var mysql = require('mysql');
 var conf = require('config');
 
 var dbDef = {
-  host: config.db.host,
-  user: config.db.sys_user,
-  password: config.db.sys_pswd,
-  database: config.db.db
+  host: conf.db.host,
+  user: conf.db.sys_user,
+  password: conf.db.sys_pswd,
+  database: conf.db.db
 };
 
 var connection = mysql.createConnection(dbDef);
