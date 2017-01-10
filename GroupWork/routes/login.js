@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
 	if (req.session.user_id) {
-		res.redirect('index');
+		res.redirect('/');
 	} else {
 		res.render('login', {
 			title: 'ログイン',
@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
 		if (userName) {
 			req.session.user_id = userId;
 			req.session.user_name = userName;
-			res.redirect('index');
+			res.redirect('/');
 		} else {
 			res.render('login', {
 				title: 'ログイン',

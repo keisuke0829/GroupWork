@@ -28,9 +28,12 @@
 					<ul class="nav navbar-nav">
 						<li id="nvHome"><a href="/">Home</a></li>
 						<li id="nvChatRoom"><a href="/chatMain">ChatRoom</a></li>
-						<li id="nvManagement"><a href="/management">管理ページ</a></li>
 						<li id="nvRegister"><a href="/register">メンバー登録</a></li>
 						<li id="nvLogin"><a href="/login">ログイン</a></li>
+						<li id="nvManagement"><a href="/management">管理ページ</a></li>
+						<% if (typeof userName !== 'undefined') { %>
+							<li id="nvLogout"><a href="/logout">ログアウト（<%= userName %>）</a></li>
+						<% } %>
 					</ul>
 				</div>
 			</div>
