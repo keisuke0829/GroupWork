@@ -6,7 +6,7 @@
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped">
-			<thead class="thead-inverse">
+			<thead>
 				<tr>
 					<th>RoomNo</th>
 					<th>ルーム名</th>
@@ -26,21 +26,20 @@
 					<% } %> <% }); %>
 				</form>
 			</tbody>
-			<tbody>
-				<form action="/chatMain" method="post">
-					<tr>
-						<th scope="row"><button type="submit" class="btn btn-primary" formmethod="post">作成</button></th>
-						<div class="form-group">
-							<td><input type="text" class="form-control" name="roomName" placeholder="ルーム名"></td>
-						</div>
-						<td>現在日時</td>
-						<div class="form-group">
-							<td><input type="password" class="form-control" name="password" placeholder="必要ならパスワード入力"></td>
-						</div>
-					</tr>
-				</form>
-			</tbody>
 		</table>
+
+		<form action="/chatMain" method="post">
+			<tr>
+				<th scope="row"><button type="submit" class="btn btn-primary" formmethod="post">作成</button></th>
+				<div class="form-group">
+					<td><input type="text" class="form-control" name="roomName" placeholder="ルーム名"></td>
+				</div>
+				<td>現在日時</td>
+				<div class="form-group">
+					<td><input type="password" class="form-control" name="password" placeholder="必要ならパスワード入力"></td>
+				</div>
+			</tr>
+		</form>
 	</div>
 </div>
 
