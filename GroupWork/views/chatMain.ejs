@@ -27,18 +27,19 @@
 				</form>
 			</tbody>
 		</table>
-
+	</div>
+	<div>
+		<h3 class="new-room">ルーム作成</h3>
 		<form action="/chatMain" method="post">
-			<tr>
-				<th scope="row"><button type="submit" class="btn btn-primary" formmethod="post">作成</button></th>
-				<div class="form-group">
-					<td><input type="text" class="form-control" name="roomName" placeholder="ルーム名"></td>
-				</div>
-				<td>現在日時</td>
-				<div class="form-group">
-					<td><input type="password" class="form-control" name="password" placeholder="必要ならパスワード入力"></td>
-				</div>
-			</tr>
+			<div class="form-group">
+				<label for="roomName">ルーム名</label>
+				<input type="text" class="form-control" name="roomName" placeholder="Room Name">
+			</div>
+			<div class="form-group">
+				<label for="password">パスワード</label>
+				<input type="password" class="form-control" name="password" placeholder="必要なら入力">
+			</div>
+			<button type="submit" class="btn btn-primary" formmethod="post">作成</button>
 		</form>
 	</div>
 </div>

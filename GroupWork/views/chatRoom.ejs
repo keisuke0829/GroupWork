@@ -3,7 +3,6 @@
 <div class="container">
 	<div class="title">
 		<h2>Room No :<%= message %></h2>
-		<label id="roomNo" hidden="true"><%= message %></label>
 	</div>
 
 	<div class="msgPanel"></div>
@@ -11,6 +10,9 @@
 	<div class="form-group">
 		<label class="control-label">メッセージを入力してください</label>
 		<textarea class="form-control" id="msg" rows="3" cols="30"></textarea>
+		<input id="roomNo" hidden="true" value="<%= message %>" />
+		<input id="userId" hidden="true" value="<%= userId %>" />
+		<input id="userName" hidden="true" value="<%= userName %>" />
 		<button class="btn btn-primary" type="button" id="send" value="<%= message %>">
 			<span class="glyphicon glyphicon-pencil"> messageSend</span>
 		</button>

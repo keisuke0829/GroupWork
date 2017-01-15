@@ -32,7 +32,6 @@ router.get('/', function (request, response, next) {
 //POST
 router.post('/', function (request, response, next) {
 	var sql = "INSERT INTO T102CTR (ROOM_NAME, PASSWORD, INS_DATE, INS_ID, UPD_DATE, UPD_ID) VALUES(?, ?, NOW(), 'dbs00', NOW(), 'dbs00')";
-	console.log(request.body);
 	if (request.body.password === ''){
 		conn.query(sql, [request.body.roomName, null], function(err, rows) {
 			next();

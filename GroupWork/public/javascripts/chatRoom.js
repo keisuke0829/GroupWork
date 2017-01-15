@@ -1,4 +1,4 @@
-var socket, emit, id, host;
+var socket, emit, id, host, userId, userName;
 (function(){
     host = window.location.hostname;
     socket = io.connect("https://" + host);
@@ -8,26 +8,23 @@ var socket, emit, id, host;
     }
 })();
 
-var scrollMsg = function(){
-	// 要素の位置を取得する
-	var element = document.getElementById('send') ;
-	var rect = element.getBoundingClientRect() ;
-	var positionX = rect.left + window.pageXOffset ;	// 要素のX座標
-	var positionY = rect.top + window.pageYOffset ;	// 要素のY座標
-
-	// 要素の位置にスクロールさせる
-	window.scrollTo( positionX, positionY ) ;
-}
-
 window.onload = function(){
 	var navibar = document.getElementById('nvChatRoom');
 	navibar.className = "active";
+
+	userId = document.getElementById('userId').value;
+	userName = document.getElementById('userName').value;
+	emit('join', {
+		roomId: document.getElementById('roomNo').value,
+		name: userName,
+		userId: userId
+	});
 
 	var idx = 0;
 
     var sendBtn = document.getElementById('send');
     sendBtn.addEventListener("click", function(){
-        emit('msg', {text: msg.value, id: id});
+        emit('msg', {text: msg.value, id: id, userId: userId});
         document.getElementById('msg').value = '';
     });
 
@@ -66,3 +63,14 @@ window.onload = function(){
         idx++;
     });
 };
+
+var scrollMsg = function(){
+	// 要素の位置を取得する
+	var element = document.getElementById('send') ;
+	var rect = element.getBoundingClientRect() ;
+	var positionX = rect.left + window.pageXOffset ;	// 要素のX座標
+	var positionY = rect.top + window.pageYOffset ;	// 要素のY座標
+
+	// 要素の位置にスクロールさせる
+	window.scrollTo( positionX, positionY ) ;
+}

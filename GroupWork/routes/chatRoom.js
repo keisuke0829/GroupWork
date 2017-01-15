@@ -11,7 +11,7 @@ router.post('/', function (request, response) {
 
 	var callback = function(stt) {
 		if (stt == '1') {
-			response.render('chatRoom', { title: 'Chat Room', message: request.body.enter });
+			response.render('chatRoom', { title: 'Chat Room', message: request.body.enter, userId: request.session.user_id, userName: request.session.user_name });
 		} else {
 			response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
 		}
