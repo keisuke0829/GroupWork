@@ -18,19 +18,19 @@ var store = {};
 io.sockets.on('connection', function(socket) {
 	// roomに入室する
 	socket.on('join', function(data) {
-		var dataStr = JSON.parse(data);
-		if (dataStr.name !== 'undefined') {
-			var _name = dataStr.name;
+		var dataJson = JSON.parse(data);
+		if (dataJson.name !== 'undefined') {
+			var _name = dataJson.name;
 		}else {
 			var _name = 'ゲスト';
 		}
 		usrObj = {
-			'roomId': dataStr.roomId,
+			'roomId': dataJson.roomId,
 			'name': _name,
 			'socketId': socket.id
 		}
 		store[socket.id] = usrObj;
-		socket.join(dataStr.roomId);
+		socket.join(dataJson.roomId);
 
 		var fMsg = store[socket.id].name + 'さんが入室しました！';
 		io.to(store[socket.id].roomId).emit('info', JSON.stringify({
@@ -40,10 +40,10 @@ io.sockets.on('connection', function(socket) {
 
 	// 「msg」という名前で受信したデータはこの中を通る
 	socket.on('msg', function(data) {
-		// そのまま全接続先へ送信
-		//io.emit('receiveMsg', data);
-		var dataStr = JSON.parse(data);
-		io.to(store[socket.id].roomId).emit('receiveMsg', data);
+		//
+		var dataJson = JSON.parse(data);
+		dataJson.name = store[socket.id].name;
+		io.to(store[socket.id].roomId).emit('receiveMsg', JSON.stringify(dataJson));
 	});
 
 	// 退出時

@@ -24,7 +24,7 @@ window.onload = function(){
 
     var sendBtn = document.getElementById('send');
     sendBtn.addEventListener("click", function(){
-        emit('msg', {text: msg.value, id: id, userId: userId});
+        emit('msg', {text: msg.value, id: id, userId: userId, name: ''});
         document.getElementById('msg').value = '';
     });
 
@@ -56,6 +56,7 @@ window.onload = function(){
         } else {
         	span.className = "glyphicon glyphicon-user";
         }
+        span.innerText = data.name;
         panel.innerText = data.text; // liタグに値を入れる
         msgPanel.appendChild(span); // ulタグの子ノードとして作成したsapanタグを追加
         msgPanel.appendChild(panel); // ulタグの子ノードとして作成したliタグを追加

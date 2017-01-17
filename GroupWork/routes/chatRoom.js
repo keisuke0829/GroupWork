@@ -23,7 +23,7 @@ router.post('/', function (request, response, next) {
 });
 
 router.post('/', function (request, response, next) {
-	if (request.body.enterPass !== ''){
+	if (request.body.enterPass !== null){
 		var sql = "SELECT ROOM_ID FROM T102CTR WHERE ROOM_ID = ? AND PASSWORD = ?  LIMIT 1";
 		conn.query(sql, [request.body.enter, request.body.enterPass], function(err, rows) {
 			var pass = rows.length? rows[0].ROOM_ID: false;
