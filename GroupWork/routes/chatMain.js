@@ -66,4 +66,11 @@ router.post('/', function (request, response, next) {
 	});
 });
 
+router.post('/del', function (request, response, next) {
+	var sql = "UPDATE T102CTR SET DEL_FLG = '1' WHERE ROOM_ID = ?";
+	conn.query(sql, [request.body.delRoom], function(err, rows) {
+		response.redirect('./');
+	});
+});
+
 module.exports = router;

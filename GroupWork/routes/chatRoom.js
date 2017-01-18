@@ -23,19 +23,16 @@ router.post('/', function (request, response, next) {
 });
 
 router.post('/', function (request, response, next) {
-	if (request.body.enterPass !== null){
-		var sql = "SELECT ROOM_ID FROM T102CTR WHERE ROOM_ID = ? AND PASSWORD = ?  LIMIT 1";
-		conn.query(sql, [request.body.enter, request.body.enterPass], function(err, rows) {
-			var pass = rows.length? rows[0].ROOM_ID: false;
-			if (pass == request.body.enter) {
+		var sql = "SELECT ROOM_ID FROM T102CTR WHERE ROOM_ID = ? AND (PASSWORD = ? OR (SELECT PASSWORD FROM T102CTR WHERE ROOM_ID = ?) IS NULL) LIMIT 1";
+		conn.query(sql, [request.body.enter, request.body.enterPass, request.body.enter], function(err, rows) {
+			var id = rows.length? rows[0].ROOM_ID: false;
+			if (id == request.body.enter) {
 			response.render('chatRoom', { title: 'Chat Room', message: request.body.enter, userId: request.session.user_id, userName: request.session.user_name });
 			} else {
 				response.redirect('chatMain');
 			}
 		});
-	} else {
-		response.render('chatRoom', { title: 'Chat Room', message: request.body.enter, userId: request.session.user_id, userName: request.session.user_name });
-	}
+
 });
 
 module.exports = router;
