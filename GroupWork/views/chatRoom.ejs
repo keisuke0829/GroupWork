@@ -5,7 +5,12 @@
 		<h2>Room No :<%= message %></h2>
 	</div>
 
-	<div class="msgPanel"></div>
+	<div class="msgPanel">
+		<% logList.forEach(function(logItem) { %>
+			<span class="glyphicon glyphicon-user"><%= logItem.USER_NAME %></span>
+			<div class="panel panel-default"><%= logItem.TEXT %></div>
+		<% }); %>
+	</div>
 
 	<div class="form-group">
 		<label class="control-label">メッセージを入力してください</label>

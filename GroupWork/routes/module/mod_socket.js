@@ -1,4 +1,6 @@
 var http = require('http');
+var conn = require('./mod_mysqlConn');
+
 
 // サーバインスタンス作成
 var server = http.createServer(function(req, res) {
@@ -24,10 +26,16 @@ io.sockets.on('connection', function(socket) {
 		}else {
 			var _name = 'ゲスト';
 		}
+		if (dataJson.userId == null) {
+			var _userId = null;
+		} else {
+			var _userId = dataJson.userId;
+		}
 		usrObj = {
 			'roomId': dataJson.roomId,
 			'name': _name,
-			'socketId': socket.id
+			'socketId': socket.id,
+			'userId': _userId
 		}
 		store[socket.id] = usrObj;
 		socket.join(dataJson.roomId);
@@ -44,6 +52,15 @@ io.sockets.on('connection', function(socket) {
 		var dataJson = JSON.parse(data);
 		dataJson.name = store[socket.id].name;
 		io.to(store[socket.id].roomId).emit('receiveMsg', JSON.stringify(dataJson));
+		if (store[socket.id].userId == 'undefined') {
+			var sql = "INSERT INTO T103CTL (ROOM_ID, USER_NAME, TEXT, INS_DATE, INS_ID) VALUES(?, ?, ?, NOW(), 'dbs00')";
+			conn.query(sql, [store[socket.id].roomId, store[socket.id].name, dataJson.text], function(err, rows) {
+			});
+		} else {
+			var sql = "INSERT INTO T103CTL (ROOM_ID, USER_ID, USER_NAME, TEXT, INS_DATE, INS_ID) VALUES(?, ?, ?, ?, NOW(), 'dbs00')";
+			conn.query(sql, [store[socket.id].roomId, store[socket.id].userId, store[socket.id].name, dataJson.text], function(err, rows) {
+			});
+		}
 	});
 
 	// 退出時

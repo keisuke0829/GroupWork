@@ -27,7 +27,10 @@ router.post('/', function (request, response, next) {
 		conn.query(sql, [request.body.enter, request.body.enterPass, request.body.enter], function(err, rows) {
 			var id = rows.length? rows[0].ROOM_ID: false;
 			if (id == request.body.enter) {
-			response.render('chatRoom', { title: 'Chat Room', message: request.body.enter, userId: request.session.user_id, userName: request.session.user_name });
+				sql = "SELECT USER_NAME, TEXT FROM T103CTL WHERE ROOM_ID = ? ORDER BY INS_DATE";
+				conn.query(sql, [request.body.enter], function(err, list) {
+					response.render('chatRoom', { title: 'Chat Room', message: request.body.enter, userId: request.session.user_id, userName: request.session.user_name, logList: list });
+				});
 			} else {
 				response.redirect('chatMain');
 			}
