@@ -21,7 +21,11 @@
 					<form action="/chatRoom" method="post">
 						<th scope="row"><button class="btn btn-primary active" name="enter" type="submit" value="<%= roomItem.ROOM_ID %>">No.<%= roomItem.ROOM_ID %></button></th>
 						<td><%= roomItem.ROOM_NAME %></td>
-						<td><input type="password" class="form-control" name="enterPass" placeholder="パスワード"></td>
+						<% if (roomItem.PASSWORD !== null) { %>
+							<td><input type="password" class="form-control" name="enterPass" placeholder="パスワード"></td>
+						<% } else {%>
+							<td>パスなし</td>
+						<% } %>
 					</form>
 						<td><%= roomItem.INS_DATE %></td>
 					<form action="/chatMain/del" method="post">

@@ -22,9 +22,17 @@ router.get('/', function (request, response, next) {
 });
 
 router.get('/', function (request, response, next) {
-	var sql = "SELECT ROOM_ID, ROOM_NAME, DEL_FLG, DATE_FORMAT(INS_DATE,'%Y/%m/%d %k:%i:%s') AS INS_DATE FROM T102CTR ORDER BY ROOM_ID ASC";
+	var sql = "SELECT ROOM_ID, ROOM_NAME, DEL_FLG, PASSWORD, DATE_FORMAT(INS_DATE,'%Y/%m/%d %k:%i:%s') AS INS_DATE FROM T102CTR ORDER BY ROOM_ID ASC";
 	conn.query(sql, function(err, rows) {
 		response.render('chatMain', { title: 'チャットルーム選択', message: 'チャット画面へようこそ！', roomList: rows});
+	});
+});
+
+// pass間違い
+router.get('/missPass', function (request, response, next) {
+	var sql = "SELECT ROOM_ID, ROOM_NAME, DEL_FLG, PASSWORD, DATE_FORMAT(INS_DATE,'%Y/%m/%d %k:%i:%s') AS INS_DATE FROM T102CTR ORDER BY ROOM_ID ASC";
+	conn.query(sql, function(err, rows) {
+		response.render('chatMain', { title: 'チャットルーム選択', message: 'パスワードが不正です！', roomList: rows});
 	});
 });
 
@@ -60,7 +68,7 @@ router.post('/', function (request, response, next) {
 });
 
 router.post('/', function (request, response, next) {
-	var sql = "SELECT ROOM_ID, ROOM_NAME, DEL_FLG, DATE_FORMAT(INS_DATE,'%Y/%m/%d %k:%i:%s') AS INS_DATE FROM T102CTR ORDER BY ROOM_ID ASC";
+	var sql = "SELECT ROOM_ID, ROOM_NAME, DEL_FLG, PASSWORD, DATE_FORMAT(INS_DATE,'%Y/%m/%d %k:%i:%s') AS INS_DATE FROM T102CTR ORDER BY ROOM_ID ASC";
 	conn.query(sql, function(err, rows) {
 		response.render('chatMain', { title: 'チャットルーム選択', message: 'チャット画面へようこそ！', roomList: rows});
 	});
