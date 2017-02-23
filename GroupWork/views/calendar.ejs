@@ -2,7 +2,37 @@
 
 <div class="container">
 	<div class="title">
-		<h2><%= message %></h2>
+		<h3><%= message %></h3>
+	</div>
+
+	<div class="change-month">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="#">先月</a></li>
+				<li class="page-item disabled"><a class="page-link" href="#">今月</a></li>
+				<li class="page-item"><a class="page-link" href="#">来月</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="calendar-main">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td align="center" class="bg-holiday">日</td>
+					<td align="center">月</td>
+					<td align="center">火</td>
+					<td align="center">水</td>
+					<td align="center">木</td>
+					<td align="center">金</td>
+					<td align="center" class="bg-holiday">土</td>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+
+		</table>
 	</div>
 </div>
 
