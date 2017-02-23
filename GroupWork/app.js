@@ -13,6 +13,7 @@ var chatRoom = require('./routes/chatRoom');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var calendar = require('./routes/calendar');
 
 // express の実態 Application を生成
 var app = express();
@@ -49,6 +50,7 @@ app.use('/management', userSession, management);
 app.use('/register', userSession, register);
 app.use('/login', userSession, login);
 app.use('/logout', logout);
+app.use('/calendar', userSession, calendar);
 
 // サーバーをポート 3000 で起動
 app.listen(3000);

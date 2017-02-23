@@ -31,7 +31,7 @@
 			<label for="confPassword"  class="control-label">
 				<span class="label label-danger">必須</span>　確認用 パスワード
 			</label>
-			<input type="password" class="form-control" id="confPassword" data-match="#password" data-match-error="パスワードが一致しません" placeholder="Enter password" data-required-error="パスワードの入力は必須です" required>
+			<input type="password" class="form-control" data-minlength="6" maxlength="20" id="confPassword" data-match="#password" data-match-error="パスワードが一致しません" placeholder="Enter password" data-required-error="パスワードの入力は必須です" required>
 			<div class="help-block with-errors"></div>
 		</div>
 		<button type="submit" class="btn btn-primary">登録</button>
