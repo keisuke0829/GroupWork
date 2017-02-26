@@ -8,9 +8,15 @@
 	<div class="change-month">
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#">先月</a></li>
-				<li class="page-item active"><a class="page-link" id="thisMonth"></a></li>
-				<li class="page-item"><a class="page-link" href="#">来月</a></li>
+				<form action="/calendar/pre" method="post" name="preForm">
+					<li class="page-item"><a class="page-link-pre" href="javascript:preForm.submit()">先月</a></li>
+					<input type="hidden" name="preMonth" value="<%= preMonth %>" />
+				</form>
+					<li class="page-item active"><a class="page-link" id="thisMonth"><%= month %></a></li>
+				<form action="/calendar/next" method="post" name="nextForm">
+					<li class="page-item"><a class="page-link-next" href="javascript:nextForm.submit()">来月</a></li>
+					<input type="hidden" name="nextMonth" value="<%= nextMonth %>" />
+				</form>
 			</ul>
 		</nav>
 	</div>

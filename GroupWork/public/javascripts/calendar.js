@@ -1,7 +1,7 @@
 var yyyy, mm, dd, initWeek;
 var date = new Date();
 yyyy = date.getFullYear();
-mm = date.getMonth() + 1;
+mm = document.getElementById('thisMonth').innerText;
 dd = date.getDate();
 
 var createTable = function(){
@@ -38,7 +38,7 @@ var createTable = function(){
 		calendarBody.appendChild(tr);
 	}
 
-	document.getElementById('thisMonth').innerText = mm + "月";
+	document.getElementById('thisMonth').innerText = document.getElementById('thisMonth').innerText + "月";
 };
 
 window.onload = function(){
