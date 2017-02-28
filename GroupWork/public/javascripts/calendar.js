@@ -1,8 +1,11 @@
-var yyyy, mm, dd, initWeek;
+var yy, mm, dd, initWeek;
 var date = new Date();
-yyyy = date.getFullYear();
-mm = document.getElementById('thisMonth').innerText;
+var tmpD = document.getElementById('thisMonth').innerText.split("/");
+yy = tmpD[0];
+mm = tmpD[1];
 dd = date.getDate();
+date.setFullYear(yy);
+date.setMonth(mm - 1);
 
 var createTable = function(){
 	// 年月日情報取得
@@ -29,7 +32,9 @@ var createTable = function(){
 
 	var tmpCnt = 0;
 	var calendarBody = document.getElementsByClassName('calendarBody').item(0);
-	for (j = 0 ; j < 5 ; j++) {
+	var maxRow = 5;
+	if (tblCnt > 35) maxRow = 6;
+	for (j = 0 ; j < maxRow ; j++) {
 		var tr = document.createElement('tr');
 		for (i = 0 + tmpCnt ; i < 7 + tmpCnt ; i++) {
 			tr.appendChild(tdDay[i]);
@@ -37,8 +42,6 @@ var createTable = function(){
 		tmpCnt = tmpCnt + 7
 		calendarBody.appendChild(tr);
 	}
-
-	document.getElementById('thisMonth').innerText = document.getElementById('thisMonth').innerText + "月";
 };
 
 window.onload = function(){
