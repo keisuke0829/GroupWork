@@ -1,11 +1,13 @@
-var yy, mm, dd, initWeek;
+var yy, mm, dd, initWeek, curMonthFlg;
 var date = new Date();
 var tmpD = document.getElementById('thisMonth').innerText.split("/");
 yy = tmpD[0];
 mm = tmpD[1];
+if (yy == date.getFullYear() && mm == date.getMonth() + 1) curMonthFlg = true;
 dd = date.getDate();
 date.setFullYear(yy);
 date.setMonth(mm - 1);
+
 
 var createTable = function(){
 	// 年月日情報取得
@@ -22,11 +24,20 @@ var createTable = function(){
 
 	// テーブル作成
 	var tdDay = new Array();
+	var modalLink = new Array();
 
 	for (i = 0 ; i < 42 ; i++) {
 		tdDay[i] = document.createElement('td');
+		modalLink[i] = document.createElement('a');
+		modalLink[i].setAttribute('data-toggle', 'modal');
+		modalLink[i].setAttribute('data-target', '#calendarModal');
+		modalLink[i].setAttribute('data-recipient', i + 1 - initWeek);
 		if (i >= initWeek && i < lastDay + initWeek) {
-			tdDay[i].innerText = i + 1 - initWeek;
+			modalLink[i].innerText = i + 1 - initWeek;
+			if(dd === i + 1 - initWeek && curMonthFlg) {
+				tdDay[i].className = "info";
+			}
+			tdDay[i].appendChild(modalLink[i]);
 		}
 	}
 
@@ -43,6 +54,16 @@ var createTable = function(){
 		calendarBody.appendChild(tr);
 	}
 };
+
+
+$('#calendarModal').on('show.bs.modal', function (event) {
+	var a = $(event.relatedTarget);
+	var recipient = a.data('recipient');
+	var modal = $(this);
+	modal.find('.modal-title').text(recipient + '日の予定詳細');
+});
+
+
 
 window.onload = function(){
 	var navibar = document.getElementById('nvCalendar');
