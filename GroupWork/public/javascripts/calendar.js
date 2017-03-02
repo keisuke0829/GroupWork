@@ -1,4 +1,4 @@
-var yy, mm, dd, initWeek, curMonthFlg;
+var yy, mm, dd, initWeek, curMonthFlg, modalDay;
 var date = new Date();
 var tmpD = document.getElementById('thisMonth').innerText.split("/");
 yy = tmpD[0];
@@ -31,7 +31,8 @@ var createTable = function(){
 		modalLink[i] = document.createElement('a');
 		modalLink[i].setAttribute('data-toggle', 'modal');
 		modalLink[i].setAttribute('data-target', '#calendarModal');
-		modalLink[i].setAttribute('data-recipient', i + 1 - initWeek);
+		modalLink[i].setAttribute('data-day', i + 1 - initWeek);
+		modalLink[i].setAttribute('data-month', mm);
 		if (i >= initWeek && i < lastDay + initWeek) {
 			modalLink[i].innerText = i + 1 - initWeek;
 			if(dd === i + 1 - initWeek && curMonthFlg) {
@@ -55,12 +56,12 @@ var createTable = function(){
 	}
 };
 
-
+// モーダルウィンドウ呼び出し
 $('#calendarModal').on('show.bs.modal', function (event) {
 	var a = $(event.relatedTarget);
-	var recipient = a.data('recipient');
+	var modalDay = a.data('day');
 	var modal = $(this);
-	modal.find('.modal-title').text(recipient + '日の予定詳細');
+	modal.find('.modal-title').text(mm + '月' + modalDay + '日の予定詳細');
 });
 
 

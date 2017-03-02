@@ -58,11 +58,32 @@
 				<h4 class="modal-title">日の予定詳細</h4>
 			</div>
 			<div class="modal-body">
-				本文
+				<!-- タブ・メニュー -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#modalTabA" data-toggle="tab">みんなの予定</a></li>
+					<li><a href="#modalTabB" data-toggle="tab">WG設定</a></li>
+				</ul>
+				<!-- タブ内容 -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="modalTabA">
+						<p>タブＡの内容</p>
+						
+					</div>
+					<div class="tab-pane" id="modalTabB">
+						<label class="control-label" for="InputTextarea">活動日に設定するなら内容をいれてね</label>
+						<form class="form-horizontal" method="post" action="/calendar/wgSubmit">
+							<div class="form-group">
+								<div class="col-sm-10">
+									<textarea placeholder="活動内容（25文字以内でお願いします）" rows="2" class="form-control" id="InputTextarea" maxlength="25"></textarea>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary">活動日登録</button>
+						</form>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-				<button type="button" class="btn btn-primary">ボタン</button>
 			</div>
 		</div>
 	</div>
