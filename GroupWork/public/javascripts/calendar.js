@@ -1,4 +1,4 @@
-var yy, mm, dd, initWeek, curMonthFlg, modalDay;
+var yy, mm, dd, initWeek, curMonthFlg, modalDay, schCnt;
 var date = new Date();
 var tmpD = document.getElementById('thisMonth').innerText.split("/");
 yy = tmpD[0];
@@ -7,6 +7,7 @@ if (yy == date.getFullYear() && mm == date.getMonth() + 1) curMonthFlg = true;
 dd = date.getDate();
 date.setFullYear(yy);
 date.setMonth(mm - 1);
+var schList = new Array();
 
 
 var createTable = function(){
@@ -25,6 +26,12 @@ var createTable = function(){
 	// テーブル作成
 	var tdDay = new Array();
 	var modalLink = new Array();
+
+	// 取得したリストを格納
+	schCnt = document.getElementById('schCnt').value;
+	for (idx = 0 ; idx < schCnt ; idx++) {
+		schList[idx] = document.getElementById('schList' + idx).value;
+	}
 
 	for (i = 0 ; i < 42 ; i++) {
 		tdDay[i] = document.createElement('td');

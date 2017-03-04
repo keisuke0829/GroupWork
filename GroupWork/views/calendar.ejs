@@ -44,7 +44,14 @@
 			</thead>
 			<tbody class="calendarBody">
 			</tbody>
-
+			<% var idx = 0 %>
+			<% schList.forEach(function(schItem) { %>
+				<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
+					value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,
+					<%= schItem.SCH_DATE %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>" />
+			<% idx++ %>
+			<% }); %>
+			<input type="hidden" name="schCnt" id="schCnt" value="<%= idx %>" />
 		</table>
 	</div>
 </div>
@@ -104,6 +111,9 @@
 										class="form-control" id="InputTextarea" maxlength="50"></textarea>
 									<div class="checkbox">
 										<label><input type="checkbox" value="1" name="CB_kari">仮日程</label>
+									</div>
+									<div class="checkbox">
+										<label><input type="checkbox" value="1" name="CB_del">日程削除</label>
 									</div>
 								</div>
 							</div>
