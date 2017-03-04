@@ -66,18 +66,51 @@
 				<!-- タブ内容 -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="modalTabA">
-						<p>タブＡの内容</p>
-						
+						<br/><label class="control-label" for="InputTextarea">みんなの予定だよ</label>
+						<div class="col-sm-12">
+							<ul class="list-group" id="list-sch">
+							</ul>
+						</div>
+						<br /> <label class="control-label" for="select-sch">キミの予定をいれてね</label>
+						<form class="form-horizontal" method="post" action="/calendar/schSubmit">
+							<div class="form-group">
+								<div class="col-sm-6">
+									<select class="form-control" id="select-sch" name="select-sch">
+										<option value="0"></option>
+										<option value="1">OK</option>
+										<option value="2">微妙</option>
+										<option value="3">ダメ</option>
+									</select>
+								</div>
+								<div class="col-sm-12">
+									<label class="control-label" for="InputTextarea">コメント</label>
+									<textarea placeholder="備考（50文字以内）" rows="3" class="form-control"
+										id="InputTextarea" maxlength="50" name="comment"></textarea>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary">予定登録</button>
+							<input type="hidden" name="year" value="<%= year %>" />
+							<input type="hidden" name="month" value="<%= month %>" />
+							<input type="hidden" name="day" id="schDay" />
+						</form>
 					</div>
 					<div class="tab-pane" id="modalTabB">
+					<br/>
 						<label class="control-label" for="InputTextarea">活動日に設定するなら内容をいれてね</label>
 						<form class="form-horizontal" method="post" action="/calendar/wgSubmit">
 							<div class="form-group">
-								<div class="col-sm-10">
-									<textarea placeholder="活動内容（25文字以内でお願いします）" rows="2" class="form-control" id="InputTextarea" maxlength="25"></textarea>
+								<div class="col-sm-12">
+									<textarea placeholder="活動内容（50文字以内）" rows="3" name="comment"
+										class="form-control" id="InputTextarea" maxlength="50"></textarea>
+									<div class="checkbox">
+										<label><input type="checkbox" value="1" name="CB_kari">仮日程</label>
+									</div>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-primary">活動日登録</button>
+							<input type="hidden" name="year" value="<%= year %>" />
+							<input type="hidden" name="month" value="<%= month %>" />
+							<input type="hidden" name="day" id="wgDay" />
 						</form>
 					</div>
 				</div>

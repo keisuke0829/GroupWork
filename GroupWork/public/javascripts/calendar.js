@@ -61,6 +61,13 @@ $('#calendarModal').on('show.bs.modal', function (event) {
 	var a = $(event.relatedTarget);
 	var modalDay = a.data('day');
 	var modal = $(this);
+	var li = document.createElement('li');
+	li.ClassName = "list-group-item list-group-item-success";
+	li.innerText = "tao：OK";
+	var modalLi = document.getElementById('list-sch');
+	modalLi.appendChild(li);
+	document.getElementById('schDay').value = modalDay;
+	document.getElementById('wgDay').value = modalDay;
 	modal.find('.modal-title').text(mm + '月' + modalDay + '日の予定詳細');
 });
 
