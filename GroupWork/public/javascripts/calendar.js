@@ -7,7 +7,7 @@ if (yy == date.getFullYear() && mm == date.getMonth() + 1) curMonthFlg = true;
 dd = date.getDate();
 date.setFullYear(yy);
 date.setMonth(mm - 1);
-var schList = new Array();
+var schObj = [];
 
 
 var createTable = function(){
@@ -30,7 +30,16 @@ var createTable = function(){
 	// 取得したリストを格納
 	schCnt = document.getElementById('schCnt').value;
 	for (idx = 0 ; idx < schCnt ; idx++) {
-		schList[idx] = document.getElementById('schList' + idx).value;
+		var schList = document.getElementById('schList' + idx).value.split(",");
+		schObj.push({
+			'SCH_DATE': schList[0],
+			'USER_NAME': schList[1],
+			'WG_FLG': schList[2],
+			'KARI_FLG': schList[3],
+			'SCH_KBN': schList[4],
+			'COMMENT': schList[5]
+		});
+		//schStore[schList[0] + schList[1] + schList[2]] = schObj;
 	}
 
 	for (i = 0 ; i < 42 ; i++) {
@@ -46,6 +55,26 @@ var createTable = function(){
 				tdDay[i].className = "info";
 			}
 			tdDay[i].appendChild(modalLink[i]);
+			var tmpDd = i - initWeek + 1;
+			var curDay = yy + ('0' + mm).slice(-2) + ('0' + tmpDd).slice(-2);
+			var tgtSch = schObj.filter(function(item, index){
+				  return (item.SCH_DATE == curDay);
+				});
+			if (tgtSch.length > 0) {
+				var span = document.createElement('span');
+				if (tgtSch[0].WG_FLG == "1") {
+					if (tgtSch[0].KARI_FLG == "0") {
+						span.className = "glyphicon glyphicon-star";
+					} else {
+					span.className = "glyphicon glyphicon-pushpin"
+					}
+				}
+					//span.appendChild();
+				var spanBlank = document.createElement('span');
+				spanBlank.innerText = " ";
+				tdDay[i].appendChild(spanBlank);
+				tdDay[i].appendChild(span);
+			}
 		}
 	}
 

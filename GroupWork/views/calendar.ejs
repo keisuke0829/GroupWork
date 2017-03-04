@@ -47,11 +47,11 @@
 			<% var idx = 0 %>
 			<% schList.forEach(function(schItem) { %>
 				<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
-					value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,
-					<%= schItem.SCH_DATE %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>" />
+					value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>,<%= schItem.COMMENT %>" />
 			<% idx++ %>
 			<% }); %>
 			<input type="hidden" name="schCnt" id="schCnt" value="<%= idx %>" />
+			<input type="hidden" name="schTest" id="schTest" value="<%= schList %>" />
 		</table>
 	</div>
 </div>
@@ -79,7 +79,7 @@
 							</ul>
 						</div>
 						<br /> <label class="control-label" for="select-sch">キミの予定をいれてね</label>
-						<form class="form-horizontal" method="post" action="/calendar/schSubmit">
+						<form class="form-horizontal" method="post" action="/calendar/submitSch">
 							<div class="form-group">
 								<div class="col-sm-6">
 									<select class="form-control" id="select-sch" name="select-sch">
@@ -104,7 +104,7 @@
 					<div class="tab-pane" id="modalTabB">
 					<br/>
 						<label class="control-label" for="InputTextarea">活動日に設定するなら内容をいれてね</label>
-						<form class="form-horizontal" method="post" action="/calendar/wgSubmit">
+						<form class="form-horizontal" method="post" action="/calendar/submitWg">
 							<div class="form-group">
 								<div class="col-sm-12">
 									<textarea placeholder="活動内容（50文字以内）" rows="3" name="comment"
