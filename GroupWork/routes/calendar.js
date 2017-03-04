@@ -90,7 +90,63 @@ router.post('/changeMonth', function (request, response) {
 
 
 //メンバー予定登録
-router.post('/submit*', function (request, response, next) {
+router.post('/submitSch', function (request, response, next) {
+	// セッション有無確認
+	if (!request.session.user_id) {
+		response.render('maintenance', { title: 'groupwork.tech', message: 'ログインしてから予定登録してください' });
+	} else {
+		OpStatus.set_status('P0008');
+
+		var callback = function(stt) {
+			if (stt == '1') {
+				var delFlg = "0";
+				if (request.body.CB_schDel == "1") {
+					delFlg = "1"
+				}
+				// カレンダー用
+				var mm = request.body.month;
+				var yy = request.body.year;
+				var dd = request.body.day;
+				// クエリ用
+				var mmm = ('0' + mm).slice(-2);
+				var ddd = ('0' + dd).slice(-2);
+				var queryDate = '' + yy + mmm + ddd;
+				// すでにデータがあるか確認
+				var query = 'SELECT SCH_DATE FROM T104SCH WHERE SCH_DATE = "' + queryDate + '" AND USER_ID = "' + request.session.user_id + '" AND WG_FLG = "0" LIMIT 1';
+				conn.query(query, function(err, rows) {
+					var schDate = rows.length? rows[0].SCH_DATE: false;
+					if (schDate && delFlg == '1') {
+						var sql = "DELETE FROM T104SCH WHERE SCH_DATE = ? AND USER_ID = ? AND WG_FLG = '0'";
+						conn.query(sql, [queryDate, request.session.user_id], function(err, rows) {
+							next();
+						});
+					} else if (schDate) {
+						var sql = "UPDATE T104SCH SET SCH_KBN = ? ,COMMENT = ? ,INS_DATE = NOW() ,INS_ID = ? WHERE SCH_DATE = ? AND USER_ID = ? AND WG_FLG = '0'";
+						conn.query(sql, [request.body.select_sch ,request.body.comment ,request.session.user_id ,queryDate ,request.session.user_id], function(err, rows) {
+							next();
+						});
+					} else if (delFlg == '1') {
+						response.render('maintenance', { title: 'groupwork.tech', message: '予定が存在しないよ' });
+					} else {
+						var sql = "INSERT INTO T104SCH (SCH_DATE, USER_ID, WG_FLG, SCH_KBN, COMMENT, INS_DATE, INS_ID) VALUES(? ,? ,'0' ,? ,? ,NOW() , ?)";
+						conn.query(sql, [queryDate ,request.session.user_id ,request.body.select_sch ,request.body.comment ,request.session.user_id], function(err, rows) {
+							next();
+						});
+					}
+				});
+			} else {
+				response.render('maintenance', { title: 'groupwork.tech', message: 'このページはメンテナンス中です' });
+			}
+		}
+
+		OpStatus.get_status(callback);
+	}
+
+});
+
+
+//活動日登録
+router.post('/submitWg', function (request, response, next) {
 	// セッション有無確認
 	if (!request.session.user_id) {
 		response.render('maintenance', { title: 'groupwork.tech', message: 'ログインしてから日程登録してください' });
@@ -148,35 +204,13 @@ router.post('/submit*', function (request, response, next) {
 
 });
 
-// 活動日登録
-
-
+// 登録後リダイレクト
 router.post('/submit*', function (request, response, next) {
 	//
 	var mm = request.body.month;
 	var yy = request.body.year;
 	request.session.calndarVal = yy + mm + '';
 	response.redirect('/calendar');
-	/*
-	var mm = request.body.month;
-	var yy = request.body.year;
-	var date = new Date();
-	date.setFullYear(yy);
-	date.setMonth(mm - 1);
-	date.setMonth(date.getMonth() + 1);
-	var nextyy = date.getFullYear();
-	var nextmm = date.getMonth() + 1;
-	date.setMonth(date.getMonth() - 2);
-	var preyy = date.getFullYear();
-	var premm = date.getMonth() + 1;
-	var ymDate = yy + ('0' + mm).slice(-2) + '%';
-	var query = "SELECT A.SCH_DATE ,B.USER_NAME ,A.WG_FLG ,A.KARI_FLG ,A.SCH_KBN, A.COMMENT FROM T104SCH A";
-	query = query + " JOIN T101USR B ON A.USER_ID = B.USER_ID WHERE SCH_DATE LIKE '" + ymDate + "'";
-	conn.query(query, function(err, rows) {
-		response.render('calendar', { title: 'groupwork.tech', message: 'WG用カレンダー',
-			year: yy, month: mm, nextYear: nextyy, preYear: preyy, nextMonth: nextmm, preMonth: premm, schList: rows });
-	});
-	*/
 });
 
 

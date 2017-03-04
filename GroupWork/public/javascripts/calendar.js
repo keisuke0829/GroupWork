@@ -39,7 +39,6 @@ var createTable = function(){
 			'SCH_KBN': schList[4],
 			'COMMENT': schList[5]
 		});
-		//schStore[schList[0] + schList[1] + schList[2]] = schObj;
 	}
 
 	for (i = 0 ; i < 42 ; i++) {
@@ -50,30 +49,59 @@ var createTable = function(){
 		modalLink[i].setAttribute('data-day', i + 1 - initWeek);
 		modalLink[i].setAttribute('data-month', mm);
 		if (i >= initWeek && i < lastDay + initWeek) {
+
 			modalLink[i].innerText = i + 1 - initWeek;
+			// 今日
+			/*
 			if(dd === i + 1 - initWeek && curMonthFlg) {
 				tdDay[i].className = "info";
 			}
+			*/
 			tdDay[i].appendChild(modalLink[i]);
+
 			var tmpDd = i - initWeek + 1;
 			var curDay = yy + ('0' + mm).slice(-2) + ('0' + tmpDd).slice(-2);
+
+			var tgtWg = schObj.filter(function(item, index){
+				  return (item.SCH_DATE == curDay && item.WG_FLG == '1');
+			});
 			var tgtSch = schObj.filter(function(item, index){
-				  return (item.SCH_DATE == curDay);
-				});
-			if (tgtSch.length > 0) {
+				  return (item.SCH_DATE == curDay && item.WG_FLG == '0');
+			});
+
+			// データ有りならブランク挿入
+			if (tgtWg.length > 0 || tgtSch.length > 0) {
+				var spanBlank = document.createElement('span');
+				spanBlank.innerText = " ";
+				tdDay[i].appendChild(spanBlank);
+			}
+
+			if (tgtWg.length > 0) {
 				var span = document.createElement('span');
-				if (tgtSch[0].WG_FLG == "1") {
-					if (tgtSch[0].KARI_FLG == "0") {
+				if (tgtWg[0].WG_FLG == "1") {
+					if (tgtWg[0].KARI_FLG == "0") {
 						span.className = "glyphicon glyphicon-star";
 					} else {
 					span.className = "glyphicon glyphicon-pushpin"
 					}
+					tdDay[i].appendChild(span);
 				}
-					//span.appendChild();
-				var spanBlank = document.createElement('span');
-				spanBlank.innerText = " ";
-				tdDay[i].appendChild(spanBlank);
-				tdDay[i].appendChild(span);
+			}
+			if (tgtSch.length > 0) {
+				var span = document.createElement('span');
+				var schKbnCheck = 0;
+				tgtSch.forEach(function(schItem) {
+					if (schItem.SCH_KBN && schItem.SCH_KBN > schKbnCheck) schKbnCheck = schItem.SCH_KBN;
+				});
+				if (schKbnCheck == "0" || schKbnCheck == "1") {
+					tdDay[i].className = "success";
+				} else if (schKbnCheck == "2") {
+					tdDay[i].className = "warning";
+				} else if (schKbnCheck == "3") {
+					tdDay[i].className = "danger";
+				}
+			} else {
+				tdDay[i].className = "success";
 			}
 		}
 	}
@@ -97,13 +125,65 @@ $('#calendarModal').on('show.bs.modal', function (event) {
 	var a = $(event.relatedTarget);
 	var modalDay = a.data('day');
 	var modal = $(this);
-	var li = document.createElement('li');
-	li.ClassName = "list-group-item list-group-item-success";
-	li.innerText = "tao：OK";
-	var modalLi = document.getElementById('list-sch');
-	modalLi.appendChild(li);
+
+	// スケジュールモーダル初期化
+	document.getElementsByName('CB_schDel').item(0).checked = false;
+	document.getElementById('TextareaSch').innerText = "";
+
+	// WGモーダル初期化＆設定
+	document.getElementsByName('CB_kari').item(0).checked = false;
+	document.getElementsByName('CB_del').item(0).checked = false;
+	document.getElementById('TextareaWg').innerText = "";
+
 	document.getElementById('schDay').value = modalDay;
+	var curDay = yy + ('0' + mm).slice(-2) + ('0' + modalDay).slice(-2);
+
+	var modalLi = document.getElementById('list-sch');
+	modalLi.textContent = null;
+	var tgtSch = schObj.filter(function(item, index){
+		  return (item.SCH_DATE == curDay && item.WG_FLG == '0');
+	});
+	if (tgtSch.length > 0) {
+		tgtSch.forEach(function(schItem) {
+			var li = document.createElement('li');
+			if (schItem.SCH_KBN == "1") {
+				li.className = "list-group-item list-group-item-success";
+				li.innerText = schItem.USER_NAME + "(OK)：" + schItem.COMMENT;
+				modalLi.appendChild(li);
+			} else if (schItem.SCH_KBN == "2") {
+				li.className = "list-group-item list-group-item-warning";
+				li.innerText = schItem.USER_NAME + "(微妙)：" + schItem.COMMENT;
+				modalLi.appendChild(li);
+			} else if (schItem.SCH_KBN == "3") {
+				li.className = "list-group-item list-group-item-danger";
+				li.innerText = schItem.USER_NAME + "(ダメ)：" + schItem.COMMENT;
+				modalLi.appendChild(li);
+			}
+		});
+	} else {
+		var li = document.createElement('li');
+		li.className = "list-group-item list-group-item-info";
+		li.innerText = "予定なし";
+		modalLi.appendChild(li);
+	}
+	var li = document.createElement('li');
+
+
+	// WG設定
+	var tgtSchWg = schObj.filter(function(item, index){
+		  return (item.SCH_DATE == curDay && item.WG_FLG == '1');
+	});
+	if (tgtSchWg.length > 0) {
+		if (tgtSchWg[0].KARI_FLG == "1") {
+			document.getElementsByName('CB_kari').item(0).checked = true;
+		} else {
+			document.getElementsByName('CB_kari').item(0).checked = false;
+		}
+		document.getElementById('TextareaWg').innerText = tgtSchWg[0].COMMENT;
+	}
 	document.getElementById('wgDay').value = modalDay;
+
+	// モーダル呼び出し
 	modal.find('.modal-title').text(mm + '月' + modalDay + '日の予定詳細');
 });
 

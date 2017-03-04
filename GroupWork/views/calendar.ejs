@@ -30,29 +30,31 @@
 	</form>
 
 	<div class="calendar-main">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<td align="center" class="bg-holiday">日</td>
-					<td align="center">月</td>
-					<td align="center">火</td>
-					<td align="center">水</td>
-					<td align="center">木</td>
-					<td align="center">金</td>
-					<td align="center" class="bg-holiday">土</td>
-				</tr>
-			</thead>
-			<tbody class="calendarBody">
-			</tbody>
-			<% var idx = 0 %>
-			<% schList.forEach(function(schItem) { %>
-				<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
-					value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>,<%= schItem.COMMENT %>" />
-			<% idx++ %>
-			<% }); %>
-			<input type="hidden" name="schCnt" id="schCnt" value="<%= idx %>" />
-			<input type="hidden" name="schTest" id="schTest" value="<%= schList %>" />
-		</table>
+		<div class="panel panel-default">
+			<table class="table table-bordered table-responsive">
+				<thead>
+					<tr class="bg-primary">
+						<td align="center" class="bg-holiday">日</td>
+						<td align="center">月</td>
+						<td align="center">火</td>
+						<td align="center">水</td>
+						<td align="center">木</td>
+						<td align="center">金</td>
+						<td align="center" class="bg-holiday">土</td>
+					</tr>
+				</thead>
+				<tbody class="calendarBody">
+				</tbody>
+				<% var idx = 0 %>
+				<% schList.forEach(function(schItem) { %>
+					<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
+						value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>,<%= schItem.COMMENT %>" />
+				<% idx++ %>
+				<% }); %>
+				<input type="hidden" name="schCnt" id="schCnt" value="<%= idx %>" />
+				<input type="hidden" name="schTest" id="schTest" value="<%= schList %>" />
+			</table>
+		</div>
 	</div>
 </div>
 
@@ -68,7 +70,7 @@
 				<!-- タブ・メニュー -->
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#modalTabA" data-toggle="tab">みんなの予定</a></li>
-					<li><a href="#modalTabB" data-toggle="tab">WG設定</a></li>
+					<li><a href="#modalTabB" data-toggle="tab">活動日設定</a></li>
 				</ul>
 				<!-- タブ内容 -->
 				<div class="tab-content">
@@ -82,8 +84,7 @@
 						<form class="form-horizontal" method="post" action="/calendar/submitSch">
 							<div class="form-group">
 								<div class="col-sm-6">
-									<select class="form-control" id="select-sch" name="select-sch">
-										<option value="0"></option>
+									<select class="form-control" id="select-sch" name="select_sch">
 										<option value="1">OK</option>
 										<option value="2">微妙</option>
 										<option value="3">ダメ</option>
@@ -91,8 +92,11 @@
 								</div>
 								<div class="col-sm-12">
 									<label class="control-label" for="InputTextarea">コメント</label>
-									<textarea placeholder="備考（50文字以内）" rows="3" class="form-control"
-										id="InputTextarea" maxlength="50" name="comment"></textarea>
+									<textarea placeholder="備考（25文字以内）" rows="2" class="form-control"
+										id="TextareaSch" maxlength="50" name="comment"></textarea>
+									<div class="checkbox">
+											<label><input type="checkbox" value="1" name="CB_schDel">予定削除</label>
+									</div>
 								</div>
 							</div>
 							<button type="submit" class="btn btn-primary">予定登録</button>
@@ -108,7 +112,7 @@
 							<div class="form-group">
 								<div class="col-sm-12">
 									<textarea placeholder="活動内容（50文字以内）" rows="3" name="comment"
-										class="form-control" id="InputTextarea" maxlength="50"></textarea>
+										class="form-control" id="TextareaWg" maxlength="50"></textarea>
 									<div class="checkbox">
 										<label><input type="checkbox" value="1" name="CB_kari">仮日程</label>
 									</div>
