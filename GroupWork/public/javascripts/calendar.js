@@ -44,6 +44,7 @@ var createTable = function(){
 	for (i = 0 ; i < 42 ; i++) {
 		tdDay[i] = document.createElement('td');
 		modalLink[i] = document.createElement('a');
+		modalLink[i].className = "modal-tgt";
 		modalLink[i].setAttribute('data-toggle', 'modal');
 		modalLink[i].setAttribute('data-target', '#calendarModal');
 		modalLink[i].setAttribute('data-day', i + 1 - initWeek);

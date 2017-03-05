@@ -9,7 +9,7 @@ body {
 .navbar-brand {
 	background: url("/public/images/logo.png") no-repeat center;
 	background-size: contain;
-	width: 295px;
+	width: 250px;
 	padding: 2px 1px;
 }
 .footer {

@@ -14,3 +14,6 @@ body {
 .glyphicon-pushpin {
 	color: #2196f3;
 }
+.modal-tgt {
+	cursor: pointer;
+}

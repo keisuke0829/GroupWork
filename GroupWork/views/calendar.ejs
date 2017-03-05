@@ -9,24 +9,23 @@
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
 
-					<li class="page-item"><a class="page-link-pre" href="javascript:preForm.submit()">先月</a></li>
+				<li class="page-item"><a class="page-link-pre" href="javascript:preForm.submit()">先月</a></li>
 
+				<li class="page-item"><a class="page-link" id="thisMonth"><%= year %>/<%= month %></a></li>
 
-					<li class="page-item"><a class="page-link" id="thisMonth"><%= year %>/<%= month %></a></li>
-
-					<li class="page-item"><a class="page-link-next" href="javascript:nextForm.submit()">来月</a></li>
+				<li class="page-item"><a class="page-link-next" href="javascript:nextForm.submit()">来月</a></li>
 
 
 			</ul>
 		</nav>
 	</div>
 	<form action="/calendar/changeMonth" method="post" name="preForm">
-		<input type="hidden" name="year" value="<%= preYear %>" />
-		<input type="hidden" name="month" value="<%= preMonth %>" />
+		<input type="hidden" name="year" value="<%= preYear %>" /> <input type="hidden" name="month"
+			value="<%= preMonth %>" />
 	</form>
 	<form action="/calendar/changeMonth" method="post" name="nextForm">
-		<input type="hidden" name="year" value="<%= nextYear %>" />
-		<input type="hidden" name="month" value="<%= nextMonth %>" />
+		<input type="hidden" name="year" value="<%= nextYear %>" /> <input type="hidden" name="month"
+			value="<%= nextMonth %>" />
 	</form>
 
 	<div class="calendar-main">
@@ -45,110 +44,109 @@
 				</thead>
 				<tbody class="calendarBody">
 				</tbody>
-				<% var idx = 0 %>
-				<% schList.forEach(function(schItem) { %>
-					<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
-						value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>,<%= schItem.COMMENT %>" />
-				<% idx++ %>
-				<% }); %>
+				<% var idx = 0 %> <% schList.forEach(function(schItem) { %>
+				<input type="hidden" name="schList<%= idx %>" id="schList<%= idx %>"
+					value="<%= schItem.SCH_DATE %>,<%= schItem.USER_NAME %>,<%= schItem.WG_FLG %>,<%= schItem.KARI_FLG %>,<%= schItem.SCH_KBN %>,<%= schItem.COMMENT %>" />
+				<% idx++ %> <% }); %>
 				<input type="hidden" name="schCnt" id="schCnt" value="<%= idx %>" />
 				<input type="hidden" name="schTest" id="schTest" value="<%= schList %>" />
 			</table>
 		</div>
 	</div>
 
-<div class="col-md-6">
-<div class="panel panel-default">
-  <div class="panel-heading">カレンダーについて</div>
-  <div class="panel-body">
-<p>みんなの予定状況によってカレンダーのセルの色が変わります<br/><span class="text-success">OKもしくは誰も予定なし：ライトグリーン<br/></span><span class="text-warning">微妙：ライトオレンジ</span><br/><span class="text-danger">ダメ：ライトレッド</span><br/>ダメ⇒微妙⇒OKの優先度で色が設定されるので分かりやすいと思います</p>
-<p>活動日に設定されている日は<span class="glyphicon glyphicon-star"></span>マークが付きます<br/>活動日（仮）は<span class="glyphicon glyphicon-pushpin"></span>マークが付きます</p>
-  </div>
-</div>
-</div>
-<div class="col-md-6">
-<div class="panel panel-default">
-  <div class="panel-heading">予定入力について</div>
-  <div class="panel-body">
-          <p>ログインしないと予定登録はできないので、メンバー登録してログインしてください<br/>日付をクリックすると予定登録のモーダルダイアログが開きます<br/>基本的にOKの場合は予定登録しなくていいです<br/>ダメな日と微妙な日だけを登録してください<br/>OKは活動日（仮）のアンケートに使うつもりです<br/>その日のみんなの予定はダイアログに表示されます<br/><h3><span class="text-danger">バグがあったら教えてください</span><h3></p>
-       </div>
-</div>
-</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">カレンダーについて</div>
+			<div class="panel-body">
+				<p>みんなの予定状況によってカレンダーのセルの色が変わります<br /><span class="text-success">OKもしくは誰も予定なし：ライトグリーン<br /></span><span class="text-warning">微妙：ライトオレンジ</span><br /><span class="text-danger">ダメ：ライトレッド</span><br />ダメ⇒微妙⇒OKの優先度で色が設定されるので分かりやすいと思います</p><p>活動日に設定されている日は<span class="glyphicon glyphicon-star"></span>マークが付きます<br />活動日（仮）は<span class="glyphicon glyphicon-pushpin"></span>マークが付きます</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">予定入力について</div>
+			<div class="panel-body">
+				<p>ログインしないと予定登録はできないので、メンバー登録してログインしてください<br />日付をクリックすると予定登録のモーダルダイアログが開きます<br />その日のみんなの予定はダイアログに表示されます<br /><span class="text-danger">基本的にOKの場合は予定登録しなくていいです</span><br />ダメな日と微妙な日だけを登録してください<br /><span class="text-danger">活動日（仮）の日はOKを使って予定が空いてるか知らせてください<br /></span><h3><span class="text-danger">バグがあったら教えてください</span><h3></p>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- モーダル・ダイアログ -->
-<div class="modal fade" id="calendarModal" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				<h4 class="modal-title">日の予定詳細</h4>
-			</div>
-			<div class="modal-body">
-				<!-- タブ・メニュー -->
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#modalTabA" data-toggle="tab">みんなの予定</a></li>
-					<li><a href="#modalTabB" data-toggle="tab">活動日設定</a></li>
-				</ul>
-				<!-- タブ内容 -->
-				<div class="tab-content">
-					<div class="tab-pane active" id="modalTabA">
-						<br/><label class="control-label" for="InputTextarea">みんなの予定だよ</label>
-						<div class="col-sm-12">
-							<ul class="list-group" id="list-sch">
-							</ul>
+<div class="modal-container">
+	<div class="modal fade" id="calendarModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+					<h4 class="modal-title">日の予定詳細</h4>
+				</div>
+				<div class="modal-body">
+					<!-- タブ・メニュー -->
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#modalTabA" data-toggle="tab">みんなの予定</a></li>
+						<li><a href="#modalTabB" data-toggle="tab">活動日設定</a></li>
+					</ul>
+					<!-- タブ内容 -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="modalTabA">
+							<br/><label class="control-label" for="InputTextarea">みんなの予定だよ</label>
+							<div class="col-sm-12">
+								<ul class="list-group" id="list-sch">
+								</ul>
+							</div>
+							<br /> <label class="control-label" for="select-sch">キミの予定をいれてね</label>
+							<form class="form-horizontal" method="post" action="/calendar/submitSch">
+								<div class="form-group">
+									<div class="col-sm-6">
+										<select class="form-control" id="select-sch" name="select_sch">
+											<option value="1">OK</option>
+											<option value="2">微妙</option>
+											<option value="3">ダメ</option>
+										</select>
+									</div>
+									<div class="col-sm-12">
+										<label class="control-label" for="InputTextarea">コメント</label>
+										<textarea placeholder="備考（25文字以内）" rows="2" class="form-control"
+											id="TextareaSch" maxlength="50" name="comment"></textarea>
+										<div class="checkbox">
+												<label><input type="checkbox" value="1" name="CB_schDel">予定削除</label>
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">予定登録</button>
+								<input type="hidden" name="year" value="<%= year %>" />
+								<input type="hidden" name="month" value="<%= month %>" />
+								<input type="hidden" name="day" id="schDay" />
+							</form>
 						</div>
-						<br /> <label class="control-label" for="select-sch">キミの予定をいれてね</label>
-						<form class="form-horizontal" method="post" action="/calendar/submitSch">
-							<div class="form-group">
-								<div class="col-sm-6">
-									<select class="form-control" id="select-sch" name="select_sch">
-										<option value="1">OK</option>
-										<option value="2">微妙</option>
-										<option value="3">ダメ</option>
-									</select>
-								</div>
-								<div class="col-sm-12">
-									<label class="control-label" for="InputTextarea">コメント</label>
-									<textarea placeholder="備考（25文字以内）" rows="2" class="form-control"
-										id="TextareaSch" maxlength="50" name="comment"></textarea>
-									<div class="checkbox">
-											<label><input type="checkbox" value="1" name="CB_schDel">予定削除</label>
+						<div class="tab-pane" id="modalTabB">
+						<br/>
+							<label class="control-label" for="InputTextarea">活動日に設定するなら内容をいれてね</label>
+							<form class="form-horizontal" method="post" action="/calendar/submitWg">
+								<div class="form-group">
+									<div class="col-sm-12">
+										<textarea placeholder="活動内容（50文字以内）" rows="3" name="comment"
+											class="form-control" id="TextareaWg" maxlength="50"></textarea>
+										<div class="checkbox">
+											<label><input type="checkbox" value="1" name="CB_kari">仮日程</label>
+										</div>
+										<div class="checkbox">
+											<label><input type="checkbox" value="1" name="CB_del">日程削除</label>
+										</div>
 									</div>
 								</div>
-							</div>
-							<button type="submit" class="btn btn-primary">予定登録</button>
-							<input type="hidden" name="year" value="<%= year %>" />
-							<input type="hidden" name="month" value="<%= month %>" />
-							<input type="hidden" name="day" id="schDay" />
-						</form>
-					</div>
-					<div class="tab-pane" id="modalTabB">
-					<br/>
-						<label class="control-label" for="InputTextarea">活動日に設定するなら内容をいれてね</label>
-						<form class="form-horizontal" method="post" action="/calendar/submitWg">
-							<div class="form-group">
-								<div class="col-sm-12">
-									<textarea placeholder="活動内容（50文字以内）" rows="3" name="comment"
-										class="form-control" id="TextareaWg" maxlength="50"></textarea>
-									<div class="checkbox">
-										<label><input type="checkbox" value="1" name="CB_kari">仮日程</label>
-									</div>
-									<div class="checkbox">
-										<label><input type="checkbox" value="1" name="CB_del">日程削除</label>
-									</div>
-								</div>
-							</div>
-							<button type="submit" class="btn btn-primary">活動日登録</button>
-							<input type="hidden" name="year" value="<%= year %>" />
-							<input type="hidden" name="month" value="<%= month %>" />
-							<input type="hidden" name="day" id="wgDay" />
-						</form>
+								<button type="submit" class="btn btn-primary">活動日登録</button>
+								<input type="hidden" name="year" value="<%= year %>" />
+								<input type="hidden" name="month" value="<%= month %>" />
+								<input type="hidden" name="day" id="wgDay" />
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				</div>
 			</div>
 		</div>
 	</div>
