@@ -38,7 +38,7 @@ router.get('/', function (request, response) {
 				ymDate = yy + ('0' + mm).slice(-2) + '%'
 			}
 			var query = "SELECT A.SCH_DATE ,B.USER_NAME ,A.WG_FLG ,A.KARI_FLG ,A.SCH_KBN, A.COMMENT FROM T104SCH A"
-			query = query + " JOIN T101USR B ON A.USER_ID = B.USER_ID WHERE SCH_DATE LIKE '" + ymDate + "'";
+			query = query + " JOIN T101USR B ON A.USER_ID = B.USER_ID WHERE SCH_DATE LIKE '" + ymDate + "' ORDER BY A.INS_DATE DESC";
 			conn.query(query, function(err, rows) {
 				request.session.calndarVal = null;
 				response.render('calendar', { title: 'groupwork.tech', message: 'WG用カレンダー',
@@ -74,7 +74,7 @@ router.post('/changeMonth', function (request, response) {
 			var premm = date.getMonth() + 1;
 			var ymDate = yy + ('0' + mm).slice(-2) + '%'
 			var query = "SELECT A.SCH_DATE ,B.USER_NAME ,A.WG_FLG ,A.KARI_FLG ,A.SCH_KBN, A.COMMENT FROM T104SCH A"
-			query = query + " JOIN T101USR B ON A.USER_ID = B.USER_ID WHERE SCH_DATE LIKE '" + ymDate + "'";
+			query = query + " JOIN T101USR B ON A.USER_ID = B.USER_ID WHERE SCH_DATE LIKE '" + ymDate + "' ORDER BY A.INS_DATE DESC";
 			conn.query(query, function(err, rows) {
 				response.render('calendar', { title: 'groupwork.tech', message: 'WG用カレンダー',
 					year: yy, month: mm, nextYear: nextyy, preYear: preyy, nextMonth: nextmm, preMonth: premm, schList: rows });

@@ -141,6 +141,26 @@ $('#calendarModal').on('show.bs.modal', function (event) {
 
 	var modalLi = document.getElementById('list-sch');
 	modalLi.textContent = null;
+
+	// WG設定
+	var tgtSchWg = schObj.filter(function(item, index){
+		  return (item.SCH_DATE == curDay && item.WG_FLG == '1');
+	});
+	if (tgtSchWg.length > 0) {
+		if (tgtSchWg[0].KARI_FLG == "1") {
+			document.getElementsByName('CB_kari').item(0).checked = true;
+		} else {
+			document.getElementsByName('CB_kari').item(0).checked = false;
+		}
+		document.getElementById('TextareaWg').innerText = tgtSchWg[0].COMMENT;
+		var li = document.createElement('li');
+		li.className = "list-group-item list-group-item-info";
+		li.innerText = "活動内容：" + tgtSchWg[0].COMMENT;
+		modalLi.appendChild(li);
+	}
+	document.getElementById('wgDay').value = modalDay;
+
+	// みんなの予定設定
 	var tgtSch = schObj.filter(function(item, index){
 		  return (item.SCH_DATE == curDay && item.WG_FLG == '0');
 	});
@@ -164,25 +184,10 @@ $('#calendarModal').on('show.bs.modal', function (event) {
 	} else {
 		var li = document.createElement('li');
 		li.className = "list-group-item list-group-item-info";
-		li.innerText = "予定なし";
+		li.innerText = "みんなの予定なし";
 		modalLi.appendChild(li);
 	}
 	var li = document.createElement('li');
-
-
-	// WG設定
-	var tgtSchWg = schObj.filter(function(item, index){
-		  return (item.SCH_DATE == curDay && item.WG_FLG == '1');
-	});
-	if (tgtSchWg.length > 0) {
-		if (tgtSchWg[0].KARI_FLG == "1") {
-			document.getElementsByName('CB_kari').item(0).checked = true;
-		} else {
-			document.getElementsByName('CB_kari').item(0).checked = false;
-		}
-		document.getElementById('TextareaWg').innerText = tgtSchWg[0].COMMENT;
-	}
-	document.getElementById('wgDay').value = modalDay;
 
 	// モーダル呼び出し
 	modal.find('.modal-title').text(mm + '月' + modalDay + '日の予定詳細');
