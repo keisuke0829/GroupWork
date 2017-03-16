@@ -55,7 +55,7 @@ router.get('/', function (request, response) {
 });
 
 
-router.post('/changeMonth', function (request, response) {
+router.post('/', function (request, response) {
 	//
 	OpStatus.set_status('P0008');
 
