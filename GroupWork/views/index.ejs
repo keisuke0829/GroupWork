@@ -1,9 +1,14 @@
 <% layout('layout') -%>
 
 <div class="container">
-	<div class="title">
-		<h2><%= message %></h2>
-	</div>
+
+	<% if (typeof userName !== 'undefined') { %>
+
+	<% } else { %>
+		<div class="title">
+			<h2><%= message %></h2>
+		</div>
+	<% } %>
 </div>
 
 <% block("header_scripts","<link rel='stylesheet' href='/public/stylesheets/index.css' />") -%>
